@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Manja la activación del interruptor para habilitar la escalera de acceso al siguiente nivel
 public class Lever : MonoBehaviour
 {
     bool isLeverActive = false;

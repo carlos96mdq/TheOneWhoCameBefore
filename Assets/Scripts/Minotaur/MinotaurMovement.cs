@@ -59,7 +59,7 @@ public class MinotaurMovement : MonoBehaviour
         RaycastHit hit; // Almacena información sobre el primer collider detectado por elraycast
         // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
         if( Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer + obstacleLayer) &&
-            hit.collider.tag == "Player") {
+            hit.collider.tag == "PlayerTrigger") {
             mode = 1;                   // Cambio al ChasingMode
             isMinotaurRunning = true;   // En el ChasingMode el Minotauro corre
         }
