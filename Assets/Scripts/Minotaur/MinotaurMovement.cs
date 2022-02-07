@@ -54,7 +54,7 @@ public class MinotaurMovement : MonoBehaviour
         PlayerSearch();     // Verifico si el Player se encuentra a almenos 120 unidades (4 bloques)
     }
 
-    //
+    // Realiza una busqueda del player en linea recta
     void PlayerSearch() {
         RaycastHit hit; // Almacena información sobre el primer collider detectado por elraycast
         // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player

@@ -22,17 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
     }
-/*
-    void Movement() {
-        float verticalMovement = Input.GetAxis("Vertical");
-        float horizontalMovement = Input.GetAxis("Horizontal");
-        float runningValue = Input.GetAxis("Run");
 
-        Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-
-        controller.Move(move.normalized * (1 + runningValue * (runningFactor - 1f)) * movementSpeed * Time.deltaTime);    
-    }
-*/
     void Movement() {
         // Toma los valores de los inputs para moverse hacia adelante, atras y los costados
         float verticalMovement = Input.GetAxis("Vertical");
