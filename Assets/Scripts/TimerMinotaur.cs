@@ -5,10 +5,10 @@ using UnityEngine;
 public class TimerMinotaur : MonoBehaviour
 {
     float timerOne = 0f;        // Timer uno: encargado de la aparición del Minotauro
-    float timerOneLimit = 10f;  // Limite del Timer uno: 30 segundos
+    float timerOneLimit = 30f;  // Limite del Timer uno: 30 segundos
     bool timerOneActive;        // Indica si el Timer uno está activado
     float timerTwo = 0f;        // Timer dos: encargado de la aparición de un segundo Minotauro
-    float timerTwoLimit = 20f; // Limite del Timer dos: 5 minutos
+    float timerTwoLimit = 300f; // Limite del Timer dos: 5 minutos
     bool timerTwoActive;        // Indica si elTimer dos está activado
     GameObject minotaur;        // El gameobject del Minotauro
     GameObject minotaurTwo;     // El gameobject del segundo Minotauro

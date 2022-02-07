@@ -19,6 +19,5 @@ public class MinotaurAnimation : MonoBehaviour
     void Update()
     {
         minotaurAnimation.SetBool("isRunning", minotaurScript.isRunning);
-        Debug.Log(minotaurScript.isRunning);
     }
 }
