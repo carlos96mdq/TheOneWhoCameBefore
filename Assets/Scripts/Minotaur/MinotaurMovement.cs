@@ -5,8 +5,7 @@ using System;
 
 public class MinotaurMovement : MonoBehaviour
 {   
-    public static bool isMinotaurRunning = false;   // Indica si el Minotauro está corriendo o no, es usada por otros scripts
-   
+    public bool isRunning = false;                  // Indica si el Minotauro está corriendo o no, es usada por otros scripts
     public float movementSpeed = 7f;                // Velocidad de movimiento
     public float runningFactor = 3f;                // Indica en cuantas veces aumenta la velocidad al correr
     public float distanceWallDetection = 5.5f;      // Distancia a la que detecta un objeto y dobla
@@ -61,11 +60,11 @@ public class MinotaurMovement : MonoBehaviour
         if( Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer + obstacleLayer) &&
             hit.collider.tag == "PlayerTrigger") {
             mode = 1;                   // Cambio al ChasingMode
-            isMinotaurRunning = true;   // En el ChasingMode el Minotauro corre
+            isRunning = true;   // En el ChasingMode el Minotauro corre
         }
         else {
             mode = 0;                   // Cambio al SearchingMode
-            isMinotaurRunning = false;
+            isRunning = false;
         }
     }
 
@@ -115,7 +114,7 @@ public class MinotaurMovement : MonoBehaviour
     // Avanza para adelante
     void MoveForward() {
         // Si está corriendo, aumenta la velocidad
-        if(isMinotaurRunning) {
+        if(isRunning) {
             controller.Move(transform.forward * movementSpeed * runningFactor * Time.deltaTime);
         }
         else {

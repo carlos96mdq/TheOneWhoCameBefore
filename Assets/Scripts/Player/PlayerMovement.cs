@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public static bool isPlayerRunning = false; // Indica si el Player está corriendo
-    public static bool isPlayerMoving = false;  // Indica si el Player está en movimiento
-    
+    public bool isRunning = false; // Indica si el Player está corriendo
+    public bool isMoving = false;  // Indica si el Player está en movimiento
     public float movementSpeed = 5f;
     public float runningFactor = 2f;            // Indica en cuantas veces aumenta la velocidad al correr
 
@@ -34,26 +33,26 @@ public class PlayerMovement : MonoBehaviour
 
         // Comprueba si está apretado el boton para correr
         if(Input.GetAxis("Run") != 0f && verticalMovement != 0f) {
-            isPlayerRunning = true;
+            isRunning = true;
         }
         else {
-            isPlayerRunning = false;
+            isRunning = false;
         }
 
         // A partir de los inputs obtiene el vector de movimiento
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
         if(move.magnitude != 0f) {
-            isPlayerMoving = true;
+            isMoving = true;
         }
         else {
-            isPlayerMoving = false;
+            isMoving = false;
         }
 
         // Realizo el movimiento
-        if(isPlayerRunning) {
+        if(isRunning) {
             controller.Move(move.normalized * runningFactor * movementSpeed * Time.deltaTime);
         }
-        else if(isPlayerMoving) {
+        else if(isMoving) {
             controller.Move(move.normalized * movementSpeed * Time.deltaTime);
         }    
     }

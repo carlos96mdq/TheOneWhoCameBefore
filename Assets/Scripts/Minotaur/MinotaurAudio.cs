@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class MinotaurAudio : MonoBehaviour
 {
-    AudioSource footsteps;          // Efecto de sonido de pazos
-    float walkingFrecuency = 0.7f;  // Velocidad de pazos en caminata
-    float runningFrecuency = 1.2f;    // Velocidad de pazos en corrida
+    float walkingFrecuency = 0.7f;      // Velocidad de pazos en caminata
+    float runningFrecuency = 1.2f;      // Velocidad de pazos en corrida
+    AudioSource footsteps;              // Efecto de sonido de pazos
+    MinotaurMovement minotaurScript;    // Script de movimiento del Minotauro, obtengo una referencia al mismo 
+                                        // para utilizar sus variables publicas
 
     void Start()
     {
         // Asigno cada audio
         footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;
+
+        minotaurScript = this.gameObject.GetComponent<MinotaurMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Se modifica la frecuencia del efecto de sonido de pazos dependiendo la velocidad de movimiento
-        if(MinotaurMovement.isMinotaurRunning) {
+        if(minotaurScript.isRunning) {
             footsteps.pitch = runningFrecuency;
         }
         // Si el Player está caminando pero no se está reproduciendo el efecto de sonido de caminar
