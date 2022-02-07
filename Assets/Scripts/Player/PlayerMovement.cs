@@ -10,8 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public float runningFactor = 2f;            // Indica en cuantas veces aumenta la velocidad al correr
 
+    float gravity = -9.81f;                     // Valor de gravedad, necesario para aplicarle a falta de rigidbody
+    //bool isGrounded = false;                    // Indica verdadero si se está tocando el piso
+    Vector3 fallVelocity = Vector3.zero;        // Undica la velocidad de caida
     CharacterController controller;
-    // Start is called before the first frame update
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -21,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
+        Gravity();
     }
 
     void Movement() {
@@ -52,5 +56,13 @@ public class PlayerMovement : MonoBehaviour
         else if(isPlayerMoving) {
             controller.Move(move.normalized * movementSpeed * Time.deltaTime);
         }    
+    }
+
+    // Maneja la gravedad a falta de RigidBody
+    // No está implementada correctamente, pero como no hay salto por ahora queda así
+    void Gravity() {
+        // fallVelocity.y += gravity * Time.deltaTime;
+        fallVelocity.y = gravity;
+        controller.Move(fallVelocity * Time.deltaTime);
     }
 }
