@@ -1,0 +1,19 @@
+IDEA
+La idea del juego es la de un Dungeon Escape.
+El jugador encarnará a un joven ateniense elcual fue lanzado dentro de un laberinto para ser comida del Minotauro.
+Para sobrevivir, el mismo deberá escapar antes de ser atrapado.
+
+MECANICAS
+El jugador no podrá hacerle daño a los enemigos, sino que deberá escabullirse entre ellos hasta encontrar la salida.
+Para ello, deberá hacer dos cosas. Primero, encontrar un interruptor, el cual al activarlo habilitará dos escaleras.
+Seguido, el jugador deberá encontrar cualquiera de esas dos escaleras y subir a ella. De hacerlo, ganará el juego.
+En caso contrario, de ser atrapado (tocado) por un Minotauro, perderá automaticamente.
+Se deberá tener en cuenta que inicialmente se le dará una ventaja al jugador, pasado esta, aparecerá el primer minotauro.
+A medida que pase el tiempo, pueden aparecer más minotauros.
+
+CONTROLES
+Movimiento: W, A, S, D 
+Correr: mantener Shift
+Jalar palanca (al estar cerca): E
+Salir: ESC
+

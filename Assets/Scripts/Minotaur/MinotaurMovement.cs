@@ -14,7 +14,8 @@ public class MinotaurMovement : MonoBehaviour
     int mode = 0;                                   // El estado en el que se encuentra el minotauro:
                                                     // 0: Buscando, 1: Persigiendo
     int playerLayer = 1 << 8;                       // Bitmask de la layer 9 para el Raycast 
-    int obstacleLayer = 1 << 7;                     // Bitmask de la layer 7 para el Raycast    
+    int obstacleLayer = 1 << 7;                     // Bitmask de la layer 7 para el Raycast
+    int enemyLayer = 1 << 10;                       // Bitmask de la layer 10 para el Raycast  
     Vector3 vectorCorrection = new Vector3 (0f, -3f, 0f);  // Vector para lacorrección de altura del Raycast con el player               
     CharacterController controller;
     System.Random randomTurn;                       // Numero random que determina si el minotauro dobla o no
@@ -59,7 +60,7 @@ public class MinotaurMovement : MonoBehaviour
         // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
         if( Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer + obstacleLayer) &&
             hit.collider.tag == "PlayerTrigger") {
-            mode = 1;                   // Cambio al ChasingMode
+            mode = 1;           // Cambio al ChasingMode
             isRunning = true;   // En el ChasingMode el Minotauro corre
         }
         else {
@@ -70,7 +71,8 @@ public class MinotaurMovement : MonoBehaviour
 
     // Maneja la rotación del Minotauro contemplando desviaciones aleatorias
     void TurnControl() {
-        // Verifico por obstaculos, y en caso de no haber verifico si hay huecos para doblar aleatoriamente
+        // Verifico por obstaculos u otro minotauro, 
+        // y en caso de no haber verifico si hay huecos para doblar aleatoriamente
         if(!CheckObstacles()) {
             // Veo un hueco a la derecha
             if(!Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 98) {
@@ -83,11 +85,11 @@ public class MinotaurMovement : MonoBehaviour
         }   
     }
 
-    // Verifico si tengo obstaculos delante y en caso de haber determino hacia donde doblar
+    // Verifico si tengo obstaculos u otro enemigo delante y en caso de haber determino hacia donde doblar
     bool CheckObstacles() {
         bool obstacle;
         // Si llega a un obstaculo
-        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer)) {
+        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer + enemyLayer)) {
             // Si la derecha está ocupada, dobla a la izquierda
             if(Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer)) {
                 TurnLeft();

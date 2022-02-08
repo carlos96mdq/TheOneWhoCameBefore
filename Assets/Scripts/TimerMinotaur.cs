@@ -5,25 +5,22 @@ using UnityEngine;
 public class TimerMinotaur : MonoBehaviour
 {
     float timerOne = 0f;        // Timer uno: encargado de la aparición del Minotauro
-    float timerOneLimit = 30f;  // Limite del Timer uno: 30 segundos
+    float timerOneLimit = 15f;  // Limite del Timer uno: 15 segundos
     bool timerOneActive;        // Indica si el Timer uno está activado
     float timerTwo = 0f;        // Timer dos: encargado de la aparición de un segundo Minotauro
-    float timerTwoLimit = 300f; // Limite del Timer dos: 5 minutos
-    bool timerTwoActive;        // Indica si elTimer dos está activado
+    float timerTwoLimit = 60f;  // Limite del Timer dos: 1 minuto
+    bool timerTwoActive;        // Indica si el Timer dos está activado
     GameObject minotaur;        // El gameobject del Minotauro
-    GameObject minotaurTwo;     // El gameobject del segundo Minotauro
     
     void Start()
     {
         // Al iniciar desactivo a los minotauros
         minotaur = GameObject.Find("Enemy");
         minotaur.SetActive(false);  
-        minotaurTwo = GameObject.Find("Enemy_2");
-        minotaurTwo.SetActive(false); 
 
         // Activo timers
         timerOneActive = true; 
-        timerTwoActive = true;          
+        timerTwoActive = false;          
     }
 
     // Update is called once per frame
@@ -46,6 +43,7 @@ public class TimerMinotaur : MonoBehaviour
             // Activo al Minotauro
             minotaur.SetActive(true);
             timerOneActive = false;
+            timerTwoActive = true;
         }
     }
 
@@ -55,9 +53,9 @@ public class TimerMinotaur : MonoBehaviour
 
         // Verifico la condición
         if(timerTwo > timerTwoLimit) {
-            // Aumento la velocidad del Minotauro
-            minotaurTwo.SetActive(true);
-            timerTwoActive = false;
+            // Aparece un nuevo Minotauro
+            Instantiate(minotaur, new Vector3(0f,6.30000019f,0f), new Quaternion(0,0,0,1));
+            timerTwo = 0f;
         }
     }
 }

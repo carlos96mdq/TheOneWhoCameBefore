@@ -9,4 +9,12 @@ public class GameSetting : MonoBehaviour
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
     }
+
+    void Update()
+    {
+        // Para forzar el cierre del juego
+        if (Input.GetKey("escape")) {
+            Application.Quit();
+        }
+    }
 }
