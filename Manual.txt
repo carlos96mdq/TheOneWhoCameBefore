@@ -12,8 +12,9 @@ Se deberá tener en cuenta que inicialmente se le dará una ventaja al jugador, 
 A medida que pase el tiempo, pueden aparecer más minotauros.
 
 CONTROLES
-Movimiento: W, A, S, D 
+Movimiento: W, A, S, D
+Rotar visión: Mouse
 Correr: mantener Shift
 Jalar palanca (al estar cerca): E
 Salir: ESC
-
+Cambiar camara: C 
