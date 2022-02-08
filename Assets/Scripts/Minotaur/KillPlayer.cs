@@ -11,7 +11,7 @@ public class KillPlayer : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.gameObject.tag == "Player") {
-            Debug.Log("Player was caught, level restarted");
+            GameSetting.instance.LoseGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
