@@ -6,6 +6,6 @@ public class GameScore : MonoBehaviour
 {
     void Start()
     {
-        GameSetting.instance.ShowScore();
+        GameManager.instance.ShowScore();
     }
 }
