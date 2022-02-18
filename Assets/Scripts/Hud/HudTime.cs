@@ -1,23 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;    // Necesario para usar TextMeshProUGUI
 
 public class HudTime : MonoBehaviour
 {
     public GameObject timeCounter;   // Contador de tiempo de juego en HUD
 
-    Text timeCounterText;           
+    TextMeshProUGUI timeCounterText;           
     
     void Start()
     {
-        timeCounterText = timeCounter.GetComponent<Text>(); // Asocio el texto en el Hud con el contador
-        timeCounterText.text = GameManager.instance.gameTimer.ToString();
+        timeCounterText = timeCounter.GetComponent<TextMeshProUGUI>(); // Asocio el texto en el Hud con el contador
+        ShowTime();
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeCounterText.text = GameManager.instance.gameTimer.ToString();
+        ShowTime();
+    }
+
+    void ShowTime() {
+        //string gameActualTime = GameManager.instance.gameTimer.ToString();
+        float gameActualTime = GameManager.instance.gameTimer;
+        timeCounterText.text = Math.Truncate(gameActualTime).ToString() + ":";
+        timeCounterText.text += Math.Truncate((gameActualTime - Math.Truncate(gameActualTime)) * 100).ToString();
     }
 }
