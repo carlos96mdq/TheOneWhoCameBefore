@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public bool isRunning = false; // Indica si el Player está corriendo
-    public bool isMoving = false;  // Indica si el Player está en movimiento
-    public float movementSpeed = 5f;
-    public float runningFactor = 2f;            // Indica en cuantas veces aumenta la velocidad al correr
+    
+    const float gravity = -9.81f;           // Valor de gravedad, necesario para aplicarle a falta de rigidbody
 
-    float gravity = -9.81f;                     // Valor de gravedad, necesario para aplicarle a falta de rigidbody
+    public bool isRunning = false;          // Indica si el Player está corriendo
+    public bool isMoving = false;           // Indica si el Player está en movimiento
+    public float movementSpeed = 5f;
+    public float runningFactor = 2f;        // Indica en cuantas veces aumenta la velocidad al correr
+    
     //bool isGrounded = false;                    // Indica verdadero si se está tocando el piso
-    Vector3 fallVelocity = Vector3.zero;        // Undica la velocidad de caida
+    Vector3 fallVelocity = Vector3.zero;    // Undica la velocidad de caida
     CharacterController controller;
+    PlayerStamina playerStamina;            // Script que contiene los datos de las stamina del player                       
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        playerStamina = GetComponent<PlayerStamina>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        // El player solo puede moverse si no se encuentra exausto 
+        if(!playerStamina.GetExhasutedState()) {
+            Movement();
+        }
+        else {
+            playerStamina.RecoverStamina();
+            isMoving = false;
+            isRunning = false;
+        }
         Gravity();
     }
 
@@ -51,9 +63,14 @@ public class PlayerMovement : MonoBehaviour
         // Realizo el movimiento
         if(isRunning) {
             controller.Move(move.normalized * runningFactor * movementSpeed * Time.deltaTime);
+            playerStamina.ConsumeStamina();
         }
         else if(isMoving) {
             controller.Move(move.normalized * movementSpeed * Time.deltaTime);
+            playerStamina.RecoverStamina();
+        }
+        else {
+            playerStamina.RecoverStamina();
         }    
     }
 

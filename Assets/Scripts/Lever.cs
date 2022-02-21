@@ -8,6 +8,9 @@ public class Lever : MonoBehaviour
 {
     bool isLeverActive = false;
     bool isPlayerNear = false;
+
+    public GameObject hud;
+    Objetives objetives;
     Animator anim;
     AudioSource leverSound;     // Efecto de sonido del mecanismo
     GameObject staircase;
@@ -18,6 +21,7 @@ public class Lever : MonoBehaviour
         staircase = GameObject.Find("Staircases");
         staircase.SetActive(false);
         leverSound = GetComponent<AudioSource>();
+        objetives = hud.GetComponent<Objetives>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class Lever : MonoBehaviour
                 isLeverActive = true;
                 staircase.SetActive(true);
                 leverSound.Play();
+                objetives.NextObjetive();
             }
             /*
             // Desactivo la palanca

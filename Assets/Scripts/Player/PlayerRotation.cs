@@ -14,7 +14,6 @@ public class PlayerRotation : MonoBehaviour
                                             // (System) y no las integradas dentro de Unity (UnityEngine)
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;                           // Esconder el mouse
         randomNumber = new System.Random((int)DateTime.Now.Ticks);         // Inicializo una nueva instancia de Random
                                                                             // con un seed dependiente de la fecha y hora actual
         player.transform.localRotation = Quaternion.Euler(0f, randomNumber.Next(360), 0f); // Devuelve un angulo random        

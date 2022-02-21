@@ -11,7 +11,7 @@ public class KillPlayer : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.gameObject.tag == "Player") {
-            GameManager.instance.LoseGame();
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

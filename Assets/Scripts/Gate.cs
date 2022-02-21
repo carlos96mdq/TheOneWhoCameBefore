@@ -10,7 +10,6 @@ public class Gate : MonoBehaviour
     {   
         // Reinicio el nivel (ya que por ahora no tengo más niveles)
         if(other.tag == "Player") {
-            GameManager.instance.WinGame();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
