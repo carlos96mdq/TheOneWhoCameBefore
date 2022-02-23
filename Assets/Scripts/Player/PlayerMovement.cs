@@ -7,18 +7,22 @@ public class PlayerMovement : MonoBehaviour
     
     const float gravity = -9.81f;           // Valor de gravedad, necesario para aplicarle a falta de rigidbody
 
-    public bool isRunning = false;          // Indica si el Player está corriendo
-    public bool isMoving = false;           // Indica si el Player está en movimiento
-    public float movementSpeed = 5f;
-    public float runningFactor = 2f;        // Indica en cuantas veces aumenta la velocidad al correr
-    
+    float movementSpeed;
+    float runningFactor;                    // Indica en cuantas veces aumenta la velocidad al correr
     //bool isGrounded = false;                    // Indica verdadero si se está tocando el piso
     Vector3 fallVelocity = Vector3.zero;    // Undica la velocidad de caida
     CharacterController controller;
-    PlayerStamina playerStamina;            // Script que contiene los datos de las stamina del player                       
+    PlayerStamina playerStamina;            // Script que contiene los datos de las stamina del player 
+
+    public bool isRunning = false;          // Indica si el Player está corriendo
+    public bool isMoving = false;           // Indica si el Player está en movimiento
+    public CharacterConstants constants;    // Constantes                      
 
     void Start()
     {
+        movementSpeed = constants.movementSpeed;
+        runningFactor = constants.runningFactor;
+        
         controller = GetComponent<CharacterController>();
         playerStamina = GetComponent<PlayerStamina>();
     }

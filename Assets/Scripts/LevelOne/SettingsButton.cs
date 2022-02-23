@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsButton : MonoBehaviour
+public class SettingsButton : Buttons
 {
-    public void OnClick() {
+    public override void OnClick() {
         LevelOneManager.instance.ClosePause();      // Cierro el PauseMenu
         LevelOneManager.instance.OpenSettings();    // Abro el SettingsMenus
     }

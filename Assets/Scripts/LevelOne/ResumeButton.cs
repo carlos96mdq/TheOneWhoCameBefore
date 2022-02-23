@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResumeButton : MonoBehaviour
+public class ResumeButton : Buttons
 {
-    public void OnClick() {
+    public override void OnClick() {
         LevelOneManager.instance.ResumeGame();
     }
 }

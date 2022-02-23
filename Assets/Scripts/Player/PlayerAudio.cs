@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    float walkingFrecuency = 0.7f;  // Velocidad de pazos en caminata
-    float runningFrecuency = 1f;    // Velocidad de pazos en corrida
-    AudioSource footsteps;          // Efecto de sonido de pazos
-    PlayerMovement playerScript;    // Script de movimiento del Player, obtengo una referencia al mismo 
-                                    // para utilizar sus variables publicas
+    float walkingFrecuency;                 // Velocidad de pazos en caminata
+    float runningFrecuency;                 // Velocidad de pazos en corrida
+    AudioSource footsteps;                  // Efecto de sonido de pazos
+    PlayerMovement playerScript;            // Script de movimiento del Player, obtengo una referencia al mismo 
+                                            // para utilizar sus variables publicas
+
+    public CharacterConstants constants;    // Constantes
     
     void Start()
     {
+        walkingFrecuency = constants.walkingFrecuency;
+        runningFrecuency = constants.runningFrecuency;
+
         // Asigno cada audio
         footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;

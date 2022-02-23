@@ -5,23 +5,27 @@ using System;
 
 public class MinotaurMovement : MonoBehaviour
 {   
-    public bool isRunning = false;                  // Indica si el Minotauro está corriendo o no, es usada por otros scripts
-    public float movementSpeed = 7f;                // Velocidad de movimiento
-    public float runningFactor = 3f;                // Indica en cuantas veces aumenta la velocidad al correr
-    public float distanceWallDetection = 5.5f;      // Distancia a la que detecta un objeto y dobla
-    public float distancePlayerDetection = 120f;    // Distancia a la que detecta al player
-   
+    float movementSpeed;                            // Velocidad de movimiento
+    float runningFactor;                            // Indica en cuantas veces aumenta la velocidad al correr
     int mode = 0;                                   // El estado en el que se encuentra el minotauro:
                                                     // 0: Buscando, 1: Persigiendo
     int playerLayer = 1 << 8;                       // Bitmask de la layer 9 para el Raycast 
     int obstacleLayer = 1 << 7;                     // Bitmask de la layer 7 para el Raycast
     int enemyLayer = 1 << 10;                       // Bitmask de la layer 10 para el Raycast  
-    Vector3 vectorCorrection = new Vector3 (0f, -3f, 0f);  // Vector para lacorrección de altura del Raycast con el player               
+    Vector3 vectorCorrection = new Vector3 (0f, -3f, 0f);  // Vector para la corrección de altura del Raycast con el player               
     CharacterController controller;
     System.Random randomTurn;                       // Numero random que determina si el minotauro dobla o no
+    
+    public bool isRunning = false;                  // Indica si el Minotauro está corriendo o no, es usada por otros scripts
+    public float distanceWallDetection = 5.5f;      // Distancia a la que detecta un objeto y dobla
+    public float distancePlayerDetection = 120f;    // Distancia a la que detecta al player
+    public CharacterConstants constants;            // Constantes
 
     void Start()
     {
+        movementSpeed = constants.movementSpeed;
+        runningFactor = constants.runningFactor;
+
         controller = GetComponent<CharacterController>();
         randomTurn = new System.Random((int)DateTime.Now.Ticks); 
     }

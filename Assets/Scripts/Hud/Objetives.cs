@@ -6,7 +6,7 @@ using TMPro;    // Necesario para usar TextMeshProUGUI
 public class Objetives : MonoBehaviour
 {
     string []objetivesList = {
-        "Find and activate de interruptor",
+        "Find and activate the interruptor",
         "Find the staircases and escape"
     };
 

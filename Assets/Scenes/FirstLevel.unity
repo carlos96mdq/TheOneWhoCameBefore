@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3074,7 +3074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: actual objetive
+  m_text: objetive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3562,6 +3562,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3610214649350316595, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
+      propertyPath: constants
+      value: 
+      objectReference: {fileID: 11400000, guid: 713011aac0c4a7b4f91b2231688b1697, type: 2}
+    - target: {fileID: 3610214649350316601, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
+      propertyPath: constants
+      value: 
+      objectReference: {fileID: 11400000, guid: 713011aac0c4a7b4f91b2231688b1697, type: 2}
     - target: {fileID: 3610214650540787372, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3583,6 +3591,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7433029544374408899, guid: 3de314cfa2a234041b2e63a42ab78f99, type: 3}
+      propertyPath: constants
+      value: 
+      objectReference: {fileID: 11400000, guid: e1429dfdb5347d14599826ee4bc90cac, type: 2}
     - target: {fileID: 7433029544374408900, guid: 3de314cfa2a234041b2e63a42ab78f99, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -3631,6 +3643,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7433029544374408959, guid: 3de314cfa2a234041b2e63a42ab78f99, type: 3}
+      propertyPath: constants
+      value: 
+      objectReference: {fileID: 11400000, guid: e1429dfdb5347d14599826ee4bc90cac, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3de314cfa2a234041b2e63a42ab78f99, type: 3}
 --- !u!1001 &7475540856826687985

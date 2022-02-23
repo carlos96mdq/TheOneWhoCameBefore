@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class MinotaurAudio : MonoBehaviour
 {
-    float walkingFrecuency = 0.7f;      // Velocidad de pazos en caminata
-    float runningFrecuency = 1.2f;      // Velocidad de pazos en corrida
-    AudioSource footsteps;              // Efecto de sonido de pazos
-    MinotaurMovement minotaurScript;    // Script de movimiento del Minotauro, obtengo una referencia al mismo 
-                                        // para utilizar sus variables publicas
+    float walkingFrecuency;                 // Velocidad de pazos en caminata
+    float runningFrecuency;                 // Velocidad de pazos en corrida
+    AudioSource footsteps;                  // Efecto de sonido de pazos
+    MinotaurMovement minotaurScript;        // Script de movimiento del Minotauro, obtengo una referencia al mismo 
+                                            // para utilizar sus variables publicas
+
+    public CharacterConstants constants;    // Constantes
 
     void Start()
     {
+        walkingFrecuency = constants.walkingFrecuency;
+        runningFrecuency = constants.runningFrecuency;
+
         // Asigno cada audio
         footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;
