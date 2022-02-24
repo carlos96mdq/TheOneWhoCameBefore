@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class TimerMinotaur : MonoBehaviour
 {
-    float timerOne = 0f;        // Timer uno: encargado de la aparición del Minotauro
-    float timerOneLimit = 15f;  // Limite del Timer uno: 15 segundos
-    bool timerOneActive;        // Indica si el Timer uno está activado
-    float timerTwo = 0f;        // Timer dos: encargado de la aparición de un segundo Minotauro
-    float timerTwoLimit = 60f;  // Limite del Timer dos: 1 minuto
-    bool timerTwoActive;        // Indica si el Timer dos está activado
-    GameObject minotaur;        // El gameobject del Minotauro
+    float timerOne;                     // Timer uno: encargado de la aparición del Minotauro
+    float timerOneLimit;                // Limite del Timer uno: 15 segundos
+    bool timerOneActive;                // Indica si el Timer uno está activado
+    float timerTwo;                     // Timer dos: encargado de la aparición de un segundo Minotauro
+    float timerTwoLimit;                // Limite del Timer dos: 1 minuto
+    bool timerTwoActive;                // Indica si el Timer dos está activado
+    GameObject minotaur;                // El gameobject del Minotauro
+
+    public TimerConstants constantsOne; // Constantes del timerOne
+    public TimerConstants constantsTwo; // Constantes del timerOne
     
     void Start()
     {
+        // Inicializo valores de los timers
+        timerOne = constantsOne.initialTime;
+        timerOneLimit = constantsOne.finishTime;
+        timerTwo = constantsTwo.initialTime;
+        timerTwoLimit = constantsTwo.finishTime;
+        
         // Al iniciar desactivo a los minotauros
         minotaur = GameObject.Find("Enemy");
         minotaur.SetActive(false);  
