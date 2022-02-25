@@ -9,6 +9,7 @@ public class Settings : MonoBehaviour
 {
     public Slider volumeSlider;             // Slider del volumen
     public ToggleGroup resolutionToggles;   // Toggles que manejan la resolución
+    public GameManager gameManager;         // Referencia al GameManager
 
     // Handler de los Toggles de Resolución
     public void OnScreenResolutionChangedHandled(int mode) {
@@ -47,10 +48,10 @@ public class Settings : MonoBehaviour
         switch (mode)
         {   
             case 0:
-                screenMode = FullScreenMode.ExclusiveFullScreen;
+                screenMode = FullScreenMode.Windowed;
                 break;
             case 1:
-                screenMode = FullScreenMode.Windowed;
+                screenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
         }
 

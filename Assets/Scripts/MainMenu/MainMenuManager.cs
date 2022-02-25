@@ -6,7 +6,7 @@ public class MainMenuManager : MonoBehaviour
 {
     public static MainMenuManager instance;
 
-    public GameObject settingMenu;
+    public GameObject settingsMenu;
     public GameObject loadingScreen;
     
     void Awake() 
@@ -36,17 +36,17 @@ public class MainMenuManager : MonoBehaviour
         Time.timeScale = 1f;                    // Resumo el tiempo de calculos
         AudioListener.pause = false;            // Resumo todos los sonidos
 
-        // Al inicio el menu de Setting y la LoadingScreen se encuentran desactivadas
-        settingMenu.SetActive(false);
+        // Al inicio el menu de settings y la LoadingScreen se encuentran desactivadas
+        settingsMenu.SetActive(false);
         loadingScreen.SetActive(false);
     }
     
     
     // Maneja el resultado del input esc
     void EscInput() {
-        // Si el Setting Menu está activado
-        if(settingMenu.activeSelf) {
-            settingMenu.SetActive(false);
+        // Si el settings Menu está activado
+        if(settingsMenu.activeSelf) {
+            settingsMenu.SetActive(false);
         }
         // Si no, sale del juego
         else {
@@ -54,9 +54,9 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    // Abre el Setting Menu
-    public void OpenSettingMenu() {
-        settingMenu.SetActive(true);
+    // Abre el settings Menu
+    public void OpenSettingsMenu() {
+        settingsMenu.SetActive(true);
     }
 
     // Activa la LoadingScreen

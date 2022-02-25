@@ -5,6 +5,6 @@ using UnityEngine;
 public class SettingButton : Buttons
 {
     public override void OnClick() {
-        MainMenuManager.instance.OpenSettingMenu();
+        MainMenuManager.instance.OpenSettingsMenu();
     }
 }
