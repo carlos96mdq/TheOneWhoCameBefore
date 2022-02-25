@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d774c21975a8c428527ee8b427267d, type: 3}
   m_Name: MinotaurConstants
   m_EditorClassIdentifier: 
+  gravity: -9.81
   movementSpeed: 7
   runningFactor: 3
   walkingFrecuency: 0.7

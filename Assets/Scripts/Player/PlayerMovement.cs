@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    const float gravity = -9.81f;           // Valor de gravedad, necesario para aplicarle a falta de rigidbody
-
+    float gravity;                          // Valor de gravedad, necesario para aplicarle a falta de rigidbody
     float movementSpeed;
     float runningFactor;                    // Indica en cuantas veces aumenta la velocidad al correr
     //bool isGrounded = false;                    // Indica verdadero si se está tocando el piso
@@ -20,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        gravity = constants.gravity;
         movementSpeed = constants.movementSpeed;
         runningFactor = constants.runningFactor;
         

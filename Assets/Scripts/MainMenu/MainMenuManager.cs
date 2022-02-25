@@ -21,11 +21,6 @@ public class MainMenuManager : MonoBehaviour
     
         InitialConfig();                    // Configuración inicial del nivel
     }
-    
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
