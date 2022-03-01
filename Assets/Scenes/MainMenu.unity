@@ -2235,26 +2235,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1967860389}
     m_Modifications:
-    - target: {fileID: 8899730730211333881, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730211333881, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730211333881, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730227104261, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730227104261, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8899730730638617456, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
       propertyPath: gameManager
       value: 
@@ -2262,10 +2242,6 @@ PrefabInstance:
     - target: {fileID: 8899730730638617468, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
       propertyPath: m_Name
       value: Settings
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730638617468, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8899730730638617469, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
       propertyPath: m_Pivot.x

@@ -16,9 +16,11 @@ public class PlayerAnimation : MonoBehaviour
         playerScript = this.gameObject.GetComponent<PlayerMovement>();
     }
 
-    void Update()
-    {
+    public void ChangeIsMoving() {
         playerAnimation.SetBool("isMoving", playerScript.isMoving);
+    }
+
+    public void ChangeIsRunning(int mode) {
         playerAnimation.SetBool("isRunning", playerScript.isRunning);
     }
 }

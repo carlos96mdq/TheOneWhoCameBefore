@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour
     float movementSpeed;
     float runningFactor;                    // Indica en cuantas veces aumenta la velocidad al correr
     //bool isGrounded = false;                    // Indica verdadero si se está tocando el piso
-    Vector3 fallVelocity = Vector3.zero;    // Undica la velocidad de caida
+    Vector3 fallVelocity = Vector3.zero;    // Indica la velocidad de caida
     CharacterController controller;
     PlayerStamina playerStamina;            // Script que contiene los datos de las stamina del player 
 
     public bool isRunning = false;          // Indica si el Player está corriendo
     public bool isMoving = false;           // Indica si el Player está en movimiento
+    public PlayerEvents playerEvents;       // Script con los eventos del Player
     public CharacterConstants constants;    // Constantes                      
 
     void Start()
@@ -36,8 +37,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else {
             playerStamina.RecoverStamina();
-            isMoving = false;
-            isRunning = false;
+            if(isMoving) {
+                isMoving = false;
+                playerEvents.InvokeOnMovingChangeEvent();
+            } 
+            if(isRunning) {
+                isRunning = false;
+                playerEvents.InvokeOnRunningChangeEvent(1);
+            }      
         }
         Gravity();
     }
@@ -48,20 +55,25 @@ public class PlayerMovement : MonoBehaviour
         float horizontalMovement = Input.GetAxis("Horizontal");
 
         // Comprueba si está apretado el boton para correr
-        if(Input.GetAxis("Run") != 0f && verticalMovement != 0f) {
+        if(Input.GetAxis("Run") != 0f && verticalMovement != 0f && !isRunning) {
             isRunning = true;
+            playerEvents.InvokeOnRunningChangeEvent(2);  
         }
-        else {
+        else if((Input.GetAxis("Run") == 0f || verticalMovement == 0f) && isRunning) {
             isRunning = false;
+            playerEvents.InvokeOnRunningChangeEvent(1);
         }
 
         // A partir de los inputs obtiene el vector de movimiento
+        // Solo se realiza un seteo de valor si el mismo cambia
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        if(move.magnitude != 0f) {
+        if(move.magnitude != 0f && !isMoving) {
             isMoving = true;
+            playerEvents.InvokeOnMovingChangeEvent();
         }
-        else {
+        else if(move.magnitude == 0f && isMoving) {
             isMoving = false;
+            playerEvents.InvokeOnMovingChangeEvent();
         }
 
         // Realizo el movimiento

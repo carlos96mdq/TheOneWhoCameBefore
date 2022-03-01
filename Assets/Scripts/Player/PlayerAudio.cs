@@ -26,20 +26,24 @@ public class PlayerAudio : MonoBehaviour
 
     void Update()
     {
-        // Se modifica la frecuencia del efecto de sonido de pazos dependiendo la velocidad de movimiento
-        if(playerScript.isRunning) {
-            footsteps.pitch = runningFrecuency;
-        }
-        // Si el Player está caminando pero no se está reproduciendo el efecto de sonido de caminar
-        else if(playerScript.isMoving) {
-            footsteps.pitch = walkingFrecuency;
-        }
-
         // Si está en movimiento y no se está reproduciendo el efecto de sonido de pazos, se reproduce
         // Tener en cuenta que tanto cuando el Player está caminando, como cuando está corriendo
-        // isPlayerMoving se encuentra en true, sólo está enfalse cuando el Player está quieto
+        // isPlayerMoving se encuentra en true, sólo está en false cuando el Player está quieto
         if(playerScript.isMoving && !footsteps.isPlaying) {
             footsteps.Play();
+        }
+    }
+
+    // Se modifica la frecuencia del efecto de sonido de pazos dependiendo la velocidad de movimiento
+    public void ChangePitch(int mode) {
+        switch (mode)
+        {
+            case 1:
+                footsteps.pitch = walkingFrecuency;
+                break;
+            case 2:
+                footsteps.pitch = runningFrecuency;
+                break;
         }
     }
 }
