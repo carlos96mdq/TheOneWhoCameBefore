@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRunning = false;          // Indica si el Player está corriendo
     public bool isMoving = false;           // Indica si el Player está en movimiento
     public PlayerEvents playerEvents;       // Script con los eventos del Player
-    public PlayerState playerState;         // Script con los estados del Player
+    public PlayerState playerState;         // Script que maneja el estado del Player
     public CharacterConstants constants;    // Constantes                      
 
     void Start()
@@ -33,19 +33,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // El player solo puede moverse si no se encuentra exausto 
-        if(!playerStamina.GetExhasutedState()) {
-            Movement();
+        if(playerState.IsRecovering()) {
+            playerStamina.RecoverStamina();  
         }
         else {
-            playerStamina.RecoverStamina();
-            if(isMoving) {
-                isMoving = false;
-                playerEvents.InvokeOnMovingChangeEvent();
-            } 
-            if(isRunning) {
-                isRunning = false;
-                playerEvents.InvokeOnRunningChangeEvent(1);
-            }      
+            Movement();
         }
         Gravity();
     }
@@ -55,40 +47,40 @@ public class PlayerMovement : MonoBehaviour
         float verticalMovement = Input.GetAxis("Vertical");
         float horizontalMovement = Input.GetAxis("Horizontal");
 
-        // Comprueba si está apretado el boton para correr
-        if(Input.GetAxis("Run") != 0f && verticalMovement != 0f && !isRunning) {
-            isRunning = true;
-            playerEvents.InvokeOnRunningChangeEvent(2);  
-        }
-        else if((Input.GetAxis("Run") == 0f || verticalMovement == 0f) && isRunning) {
-            isRunning = false;
-            playerEvents.InvokeOnRunningChangeEvent(1);
-        }
-
         // A partir de los inputs obtiene el vector de movimiento
-        // Solo se realiza un seteo de valor si el mismo cambia
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
-        if(move.magnitude != 0f && !isMoving) {
-            isMoving = true;
-            playerEvents.InvokeOnMovingChangeEvent();
-        }
-        else if(move.magnitude == 0f && isMoving) {
-            isMoving = false;
-            playerEvents.InvokeOnMovingChangeEvent();
-        }
 
-        // Realizo el movimiento
-        if(isRunning) {
-            controller.Move(move.normalized * runningFactor * movementSpeed * Time.deltaTime);
-            playerStamina.ConsumeStamina();
-        }
-        else if(isMoving) {
-            controller.Move(move.normalized * movementSpeed * Time.deltaTime);
+        // Comprueba si el Player se mueve
+        if(move.magnitude == 0f) {
+            if(!playerState.IsIdle()) {
+                playerState.StateIdle();
+                playerEvents.InvokeOnStateChange(playerState.GetState());
+            }
+            // Recupero stamina
             playerStamina.RecoverStamina();
+            return;
         }
+        // El Player se está moviendo
         else {
-            playerStamina.RecoverStamina();
-        }    
+            // Compruebo si el Player está corriendo 
+            if(Input.GetAxis("Run") != 0f) {
+                if(!playerState.IsRunning()) {
+                    playerState.StateRuning();
+                    playerEvents.InvokeOnStateChange(playerState.GetState());
+                }
+                controller.Move(move.normalized * runningFactor * movementSpeed * Time.deltaTime);
+                playerStamina.ConsumeStamina();
+            }
+            // El Player está caminando
+            else {
+                if(!playerState.IsWalking()) {
+                    playerState.StateWalking();
+                    playerEvents.InvokeOnStateChange(playerState.GetState());
+                }
+                controller.Move(move.normalized * movementSpeed * Time.deltaTime);
+                playerStamina.RecoverStamina();
+            }         
+        }
     }
 
     // Maneja la gravedad a falta de RigidBody

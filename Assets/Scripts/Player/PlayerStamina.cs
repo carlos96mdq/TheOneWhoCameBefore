@@ -10,18 +10,13 @@ public class PlayerStamina : MonoBehaviour
     const float recoverTime = 10f;          // El tiempo en segundos que tarda en recuperarse para poder
                                             // volver a moverse si la stamina llegó a 0
     float stamina = 100f;                   // Indica la stamina actual
-    bool exhausted = false;                 // Devuelve true si se encuentra exhausto
 
     public PlayerState playerState;         // Script que maneja el estado del Player
+    public PlayerEvents playerEvents;       // Script que maneja los eventos
 
     // Devuelve el valor actual de stamina
     public float GetStamina() {
         return stamina;
-    }
-
-    // Devuelve el estadode exhasuto
-    public bool GetExhasutedState() {
-        return exhausted;
     }
 
     // Devuelve el recoverTime
@@ -35,23 +30,26 @@ public class PlayerStamina : MonoBehaviour
     }
     
     // Reduce el valor de stamina actual
-    // Devuelve true si el personaje se encuentra exausto (stamina <= 0)
+    // Si la stamina se agota el personaje paasa a estado RECOVERING
     public void ConsumeStamina() {
         if(stamina > 0) {
             stamina -= Time.deltaTime * consumeStaminaFactor;
         }
         else{
-            exhausted = true;
+            playerState.StateRecovering();
+            playerEvents.InvokeOnStateChange(playerState.GetState());
         }
     }
 
     // Aumenta el valor de stamina actual
+    // Si la stamina se recupera lo suficiente el Player pasa a estado IDLE
     public void RecoverStamina() {
         if(stamina < maxStamina) {
             stamina += Time.deltaTime * recoverStaminaFactor;
         }
-        if(stamina > recoverTime && exhausted) {
-            exhausted = false;
+        if(stamina > recoverTime && playerState.IsRecovering()) {
+            playerState.StateIdle();
+            playerEvents.InvokeOnStateChange(playerState.GetState());
         }
     }
 }

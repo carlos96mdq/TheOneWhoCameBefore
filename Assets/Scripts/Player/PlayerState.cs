@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    enum State
+    public enum State
     {
         IDLE,
         WALKING,
@@ -17,6 +17,10 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         StateIdle();
+    }
+    
+    public State GetState() {
+        return playerState;
     }
     
     public void StateIdle() {
@@ -33,5 +37,21 @@ public class PlayerState : MonoBehaviour
 
     public void StateRecovering() {
         playerState = State.RECOVERING;
+    }
+
+    public bool IsIdle() {
+        return (playerState == State.IDLE);
+    }
+
+    public bool IsWalking() {
+        return (playerState == State.WALKING);
+    }
+
+    public bool IsRunning() {
+        return (playerState == State.RUNNING);
+    }
+
+    public bool IsRecovering() {
+        return (playerState == State.RECOVERING);
     }
 }
