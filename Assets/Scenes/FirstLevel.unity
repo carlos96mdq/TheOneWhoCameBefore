@@ -797,6 +797,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimation: {fileID: 528795044}
+  playerAudio: {fileID: 528795043}
+--- !u!114 &528795043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3610214649350316601, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
+  m_PrefabInstance: {fileID: 3610214651033019249}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528795040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ab9ca76dd05384da2c6bfe66aa549c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &528795044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3610214649350316597, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}

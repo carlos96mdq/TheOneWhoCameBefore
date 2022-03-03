@@ -12,6 +12,8 @@ public class PlayerStamina : MonoBehaviour
     float stamina = 100f;                   // Indica la stamina actual
     bool exhausted = false;                 // Devuelve true si se encuentra exhausto
 
+    public PlayerState playerState;         // Script que maneja el estado del Player
+
     // Devuelve el valor actual de stamina
     public float GetStamina() {
         return stamina;

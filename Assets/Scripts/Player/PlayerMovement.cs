@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRunning = false;          // Indica si el Player está corriendo
     public bool isMoving = false;           // Indica si el Player está en movimiento
     public PlayerEvents playerEvents;       // Script con los eventos del Player
+    public PlayerState playerState;         // Script con los estados del Player
     public CharacterConstants constants;    // Constantes                      
 
     void Start()

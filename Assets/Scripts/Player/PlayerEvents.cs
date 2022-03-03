@@ -17,7 +17,7 @@ public class PlayerEvents : MonoBehaviour
         // Agrego funciones al evento onMovingChange
         onMovingChange += playerAnimation.ChangeIsMoving;  
 
-        // Agrego funciones al evento onMRunningChange
+        // Agrego funciones al evento onRunningChange
         onRunningChange += playerAnimation.ChangeIsRunning; 
         onRunningChange += playerAudio.ChangePitch;
     }
