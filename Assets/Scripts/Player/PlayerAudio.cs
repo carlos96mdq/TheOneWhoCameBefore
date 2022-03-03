@@ -7,9 +7,8 @@ public class PlayerAudio : MonoBehaviour
     float walkingFrecuency;                 // Velocidad de pazos en caminata
     float runningFrecuency;                 // Velocidad de pazos en corrida
     AudioSource footsteps;                  // Efecto de sonido de pazos
-    PlayerMovement playerScript;            // Script de movimiento del Player, obtengo una referencia al mismo 
-                                            // para utilizar sus variables publicas
 
+    public PlayerState playerState;         // Script que maneja el estado del Player
     public CharacterConstants constants;    // Constantes
     
     void Start()
@@ -20,30 +19,28 @@ public class PlayerAudio : MonoBehaviour
         // Asigno cada audio
         footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;
-
-        playerScript = this.gameObject.GetComponent<PlayerMovement>();
     }
 
     void Update()
     {
         // Si está en movimiento y no se está reproduciendo el efecto de sonido de pazos, se reproduce
-        // Tener en cuenta que tanto cuando el Player está caminando, como cuando está corriendo
-        // isPlayerMoving se encuentra en true, sólo está en false cuando el Player está quieto
-        if(playerScript.isMoving && !footsteps.isPlaying) {
+        if((playerState.IsWalking() || playerState.IsRunning()) && !footsteps.isPlaying) {
             footsteps.Play();
         }
     }
 
-    // Se modifica la frecuencia del efecto de sonido de pazos dependiendo la velocidad de movimiento
-    public void ChangePitch(int mode) {
-        switch (mode)
+    // Cambia la velocidad del sonido de pasos acorde al estado del Player
+    public void ChangePitch(PlayerState.State state) {
+        switch (state)
         {
-            case 1:
+            case PlayerState.State.WALKING:
                 footsteps.pitch = walkingFrecuency;
                 break;
-            case 2:
+            case PlayerState.State.RUNNING:
                 footsteps.pitch = runningFrecuency;
                 break;
-        }
+            default:
+                break;
+        }  
     }
 }

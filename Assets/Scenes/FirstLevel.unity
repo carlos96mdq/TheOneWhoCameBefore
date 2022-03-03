@@ -3427,6 +3427,10 @@ PrefabInstance:
       propertyPath: constants
       value: 
       objectReference: {fileID: 11400000, guid: 713011aac0c4a7b4f91b2231688b1697, type: 2}
+    - target: {fileID: 3610214649350316601, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
+      propertyPath: playerState
+      value: 
+      objectReference: {fileID: 528795042}
     - target: {fileID: 3610214650540787372, guid: 6cab9064187271f4980c4e6d7f3393ef, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

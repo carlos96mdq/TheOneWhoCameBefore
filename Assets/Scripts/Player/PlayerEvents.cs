@@ -16,6 +16,7 @@ public class PlayerEvents : MonoBehaviour
     {
         // Agrego funciones al evento onStateChange
         onStateChange += playerAnimation.ChangeAnimationState;
+        onStateChange += playerAudio.ChangePitch;
     }
 
     // Invocación del handler
