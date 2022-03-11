@@ -2,7 +2,7 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
-#/[Aa]ssets/_Imported/  # Lo volveré a cambiar cuando elimine los import
+/[Aa]ssets/_Imported/
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
