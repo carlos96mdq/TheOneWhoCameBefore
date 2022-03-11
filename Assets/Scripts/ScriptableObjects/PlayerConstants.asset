@@ -16,4 +16,4 @@ MonoBehaviour:
   movementSpeed: 5
   runningFactor: 2
   walkingFrecuency: 0.7
-  runningFrecuency: 1
+  runningFrecuency: 1.1

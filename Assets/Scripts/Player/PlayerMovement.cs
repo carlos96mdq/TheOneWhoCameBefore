@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         // A partir de los inputs obtiene el vector de movimiento
         Vector3 move = transform.right * horizontalMovement + transform.forward * verticalMovement;
 
-        // Comprueba si el Player se mueve
+        // Comprueba si el Player está quieto
         if(move.magnitude == 0f) {
             if(!playerState.IsIdle()) {
                 playerState.StateIdle();
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
                     playerState.StateRuning();
                     playerEvents.InvokeOnStateChange(playerState.GetState());
                 }
-                controller.Move(move.normalized * runningFactor * movementSpeed * Time.deltaTime);
+                controller.Move(move.normalized * move.magnitude * runningFactor * movementSpeed * Time.deltaTime);
                 playerStamina.ConsumeStamina();
             }
             // El Player está caminando
@@ -77,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
                     playerState.StateWalking();
                     playerEvents.InvokeOnStateChange(playerState.GetState());
                 }
-                controller.Move(move.normalized * movementSpeed * Time.deltaTime);
+                // El agregado de move.magnitude es para que el cambio de movimiento no se vea tan brusco
+                controller.Move(move.normalized * move.magnitude * movementSpeed * Time.deltaTime);
                 playerStamina.RecoverStamina();
             }         
         }

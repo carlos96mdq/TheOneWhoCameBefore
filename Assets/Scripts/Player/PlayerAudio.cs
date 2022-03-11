@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
+
     float walkingFrecuency;                 // Velocidad de pazos en caminata
     float runningFrecuency;                 // Velocidad de pazos en corrida
     AudioSource footsteps;                  // Efecto de sonido de pazos

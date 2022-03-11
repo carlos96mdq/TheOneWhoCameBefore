@@ -29,9 +29,13 @@ public class PlayerAnimation : MonoBehaviour
                 playerAnimation.SetBool("isMoving", true);
                 playerAnimation.SetBool("isRunning", true);
                 break;
+            case PlayerState.State.RECOVERING:
+                playerAnimation.SetBool("isTired", true);
+                break;
             default:
                 playerAnimation.SetBool("isMoving", false);
                 playerAnimation.SetBool("isRunning", false);
+                playerAnimation.SetBool("isTired", false);
                 break;
         }  
     }
