@@ -3,40 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/* PlayerRotation Class
+** Tiene todas las funciones para la rotación de la cámara y del Player
+*/
 public class PlayerRotation : MonoBehaviour
 {
-    public float rotationSpeed = 100f;     // Velocidad de rotación
-    public Transform player;                // Transform del player alque la camara sigue
-    float x_rotation = 0f;                  // Rotacion inicial (la rotación respecto al eje x es hecha de esta manera)
-                                            // para poder en un futuro limitarla
-    System.Random randomNumber;            // La variableque alamacenará los valores pseudo-aleatorios
-                                            // Se debe destacar que se utilizarán las librerías del sistema de C# 
-                                            // (System) y no las integradas dentro de Unity (UnityEngine)
-    void Start()
-    {
-        randomNumber = new System.Random((int)DateTime.Now.Ticks);         // Inicializo una nueva instancia de Random
+    //************************** Variables **************************//
+    // Private
+    System.Random randomNumber;         // La variableque alamacenará los valores pseudo-aleatorios
+    float x_rotation;                   // Rotacion inicial (la rotación respecto al eje x es hecha de esta manera)
+                                        // para poder en un futuro limitarla
+    float rotationSpeed;                // Velocidad de rotación
+
+    // Public
+    public Transform player;            // Transform del player al que la camara sigue
+                                        // Se debe destacar que se utilizarán las librerías del sistema de C# 
+                                        // (System) y no las integradas dentro de Unity (UnityEngine)
+    public CharacterConstants constants;// Constantes                      
+                    
+    
+    //************************** System Methods **************************//
+    void Start() {
+        // Definicón de variables
+        x_rotation = 0f;
+        rotationSpeed = constants.rotationSpeed;
+        randomNumber = new System.Random((int)DateTime.Now.Ticks);          // Inicializo una nueva instancia de Random
                                                                             // con un seed dependiente de la fecha y hora actual
         player.transform.localRotation = Quaternion.Euler(0f, randomNumber.Next(360), 0f); // Devuelve un angulo random        
-        //UnityEngine.Random.InitState((int)DateTime.Now.Ticks);
     }
 
-    void Update()
-    {
-        Rotation(); // Rotación de la camara
-    }
+    //************************** Methods **************************//
 
-    void Rotation() {
+    // A partir de los inputs ingresados por el jugador, rota al Player
+    public void Rotation() {
         // Tomo el valor demovimiento tanto en el eje x como en el eje y del mouse
         float vertical_mouse = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
         float horizontal_mouse = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
 
-        // Almaceno el valor de y en una variable aparte para poderlo clampear entre -70° y +70°
-        // Tener en cuenta que tengo que pasarlo a una segunda variable para incrementar o disminuir ese valor, 
-        // y no igualarlo
-        x_rotation -= vertical_mouse;
-        x_rotation = Mathf.Clamp(x_rotation, -70f, 70f);
-        
-        transform.localRotation = Quaternion.Euler(x_rotation, 0f, 0f); // Rotación en vetical
-        player.Rotate(new Vector3(0f, horizontal_mouse, 0f));           // Rotación en horizontal
+        if(vertical_mouse != 0f || horizontal_mouse != 0f) {
+            // Almaceno el valor de y en una variable aparte para poderlo clampear entre -70° y +70°
+            // Tener en cuenta que tengo que pasarlo a una segunda variable para incrementar o disminuir ese valor, 
+            // y no igualarlo
+            x_rotation -= vertical_mouse;
+            x_rotation = Mathf.Clamp(x_rotation, -60f, 60f);
+            
+            transform.localRotation = Quaternion.Euler(x_rotation, 0f, 0f); // Rotación en vetical
+            player.Rotate(new Vector3(0f, horizontal_mouse, 0f));           // Rotación en horizontal
+        }
     }
 }

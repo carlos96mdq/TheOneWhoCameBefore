@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    [SerializeField] GameObject firstPersonCamera;
-    [SerializeField] GameObject thirdPersonCamera;
+    // [SerializeField] GameObject firstPersonCamera;
+    // [SerializeField] GameObject thirdPersonCamera;
+    [SerializeField] Transform playerCamera;
+
+    Vector3 firstPersonView = new Vector3(0, 1.45f, 0.46f);
+    Vector3 thirdPersonView = new Vector3(0, 2.40f, -4.22f);
+
     // Start is called before the first frame update
     void Start()
     {
-        thirdPersonCamera.SetActive(false);
+        playerCamera.localPosition = firstPersonView;
     }
 
     // Update is called once per frame
@@ -21,7 +26,11 @@ public class CameraControl : MonoBehaviour
     }
 
     void ChangeCamera() {
-        firstPersonCamera.SetActive(!firstPersonCamera.activeInHierarchy);
-        thirdPersonCamera.SetActive(!thirdPersonCamera.activeInHierarchy);
+        if(playerCamera.localPosition == firstPersonView) {
+            playerCamera.localPosition = thirdPersonView;
+        }
+        else {
+            playerCamera.localPosition = firstPersonView;
+        }
     }
 }

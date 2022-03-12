@@ -15,5 +15,10 @@ MonoBehaviour:
   gravity: -9.81
   movementSpeed: 5
   runningFactor: 2
+  rotationSpeed: 100
   walkingFrecuency: 0.7
   runningFrecuency: 1.1
+  consumeStaminaFactor: 10
+  recoverStaminaFactor: 5
+  maxStamina: 100
+  recoverTime: 10
