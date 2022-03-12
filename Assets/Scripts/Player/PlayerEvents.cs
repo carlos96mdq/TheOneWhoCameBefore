@@ -3,24 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* PlayerEvents Class
+** Se encarga de manejar los eventos del Player 
+*/
 public class PlayerEvents : MonoBehaviour
 {
-    public event Action<PlayerState.State> onStateChange;   // Evento que salta al cambiar de estado
+    //************************** Events **************************//
+    public event Action<PlayerControl.State> onStateChange;   // Evento que salta al cambiar de estado
+
+    //************************** Variables **************************//
+    // Public    
+    public PlayerAnimation playerAnimation; // Script PlayerAnimation
+    public PlayerAudio playerAudio;         // Script PlayerAudio
     
-    public PlayerAnimation playerAnimation;                 // Script PlayerAnimation
-    public PlayerAudio playerAudio;                         // Script PlayerAudio
-    public PlayerState playerState;                         // Script PlayerState
-    
-    // Start is called before the first frame update
-    void Start()
-    {
+    //************************** System Methods **************************//
+    void Start() {
         // Agrego funciones al evento onStateChange
         onStateChange += playerAnimation.ChangeAnimationState;
         onStateChange += playerAudio.ChangePitch;
+        onStateChange += playerAudio.Play;
     }
+    
+    //************************** Methods **************************//
 
     // Invocación del handler
-    public void InvokeOnStateChange(PlayerState.State state) {
+    public void InvokeOnStateChange(PlayerControl.State state) {
         onStateChange?.Invoke(state);
     }
 

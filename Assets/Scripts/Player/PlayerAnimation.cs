@@ -2,34 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// En este scriptse actualizan los parametros del Animator de Player 
-
+/* PlayerAnimation Class
+** En este scriptse actualizan los parametros del Animator de Player 
+*/
 public class PlayerAnimation : MonoBehaviour
 {
+    //************************** Variables **************************//
+    // Private
     Animator playerAnimation;
-    PlayerMovement playerScript;    // Script de movimiento del Player, obtengo una referencia al mismo 
-                                    // para utilizar sus variables publicas
-    public PlayerState playerState; // Script que maneja el estado del Player
 
-    void Start()
-    {
+    //************************** System Methods **************************//
+    void Start() {
         playerAnimation = GetComponentInChildren<Animator>();
-        playerScript = this.gameObject.GetComponent<PlayerMovement>();
     }
 
+    //************************** Methods **************************//
+    
     // Cambia el valor de las variables que rigen las animaciones
-    public void ChangeAnimationState(PlayerState.State state) {
-        switch (state)
-        {
-            case PlayerState.State.WALKING:
+    public void ChangeAnimationState(PlayerControl.State state) {
+        switch (state) {
+            case PlayerControl.State.WALKING:
                 playerAnimation.SetBool("isMoving", true);
                 playerAnimation.SetBool("isRunning", false);
                 break;
-            case PlayerState.State.RUNNING:
+            case PlayerControl.State.RUNNING:
                 playerAnimation.SetBool("isMoving", true);
                 playerAnimation.SetBool("isRunning", true);
                 break;
-            case PlayerState.State.RECOVERING:
+            case PlayerControl.State.RECOVERING:
                 playerAnimation.SetBool("isTired", true);
                 break;
             default:

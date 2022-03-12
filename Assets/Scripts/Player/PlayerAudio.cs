@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* PlayerAudio Class
+** Tiene todas las funciones para la reproducción de los audios provenientes del Player
+*/
 public class PlayerAudio : MonoBehaviour
 {
-
+    //************************** Variables **************************//
+    // Private
     float walkingFrecuency;                 // Velocidad de pazos en caminata
     float runningFrecuency;                 // Velocidad de pazos en corrida
     AudioSource footsteps;                  // Efecto de sonido de pazos
 
-    public PlayerState playerState;         // Script que maneja el estado del Player
+    // Public
     public CharacterConstants constants;    // Constantes
+        PlayerControl playerControl;
     
-    void Start()
-    {
+    //************************** System Methods **************************//
+    void Start() {
+        // Definicón de variables
         walkingFrecuency = constants.walkingFrecuency;
         runningFrecuency = constants.runningFrecuency;
 
@@ -22,22 +28,27 @@ public class PlayerAudio : MonoBehaviour
         footsteps.pitch = walkingFrecuency;
     }
 
-    void Update()
-    {
-        // Si está en movimiento y no se está reproduciendo el efecto de sonido de pazos, se reproduce
-        if((playerState.IsWalking() || playerState.IsRunning()) && !footsteps.isPlaying) {
-            footsteps.Play();
+    //************************** Methods **************************//
+
+    // Reproduce el sonido de pasos o lo detiene dependiendo el caso
+    public void Play(PlayerControl.State state) {
+        if(state == PlayerControl.State.WALKING || state == PlayerControl.State.RUNNING) {
+            if(!footsteps.isPlaying) {
+                footsteps.Play();
+            }
+        }
+        else {
+            footsteps.Pause();
         }
     }
-
+    
     // Cambia la velocidad del sonido de pasos acorde al estado del Player
-    public void ChangePitch(PlayerState.State state) {
-        switch (state)
-        {
-            case PlayerState.State.WALKING:
+    public void ChangePitch(PlayerControl.State state) {
+        switch (state) {
+            case PlayerControl.State.WALKING:
                 footsteps.pitch = walkingFrecuency;
                 break;
-            case PlayerState.State.RUNNING:
+            case PlayerControl.State.RUNNING:
                 footsteps.pitch = runningFrecuency;
                 break;
             default:
