@@ -16,7 +16,7 @@ public class PlayerAudio : MonoBehaviour
     // Public
     public CharacterConstants constants;    // Constantes
         PlayerControl playerControl;
-    
+
     //************************** System Methods **************************//
     void Start() {
         // Definicón de variables

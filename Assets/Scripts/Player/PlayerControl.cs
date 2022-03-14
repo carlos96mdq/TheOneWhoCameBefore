@@ -24,8 +24,8 @@ public class PlayerControl : MonoBehaviour
     public PlayerStamina playerStamina;     // Script de stamina
 
     // Private
-    State playerState;
-    int movement;
+    State playerState;  // Indica el estado del Player
+    int movement;       // Indica como es el movimiento del Player
 
     //************************** System Methods **************************//
     void Start() {
