@@ -25,7 +25,6 @@ public class MinotaurControl : MonoBehaviour
     // Private
     State playerState;              // Indica el estado del Player
     System.Random randomTurn;       // Numero random que determina si el minotauro dobla o no
-    bool obstacle;                  // Indica si hay obstaculos
     float distanceWallDetection;    // Distancia a la que detecta un objeto y dobla
     float distancePlayerDetection;  // Distancia a la que detecta al player
     int playerLayer;                // Bitmask de la layer 9 para el Raycast 
@@ -35,8 +34,7 @@ public class MinotaurControl : MonoBehaviour
     //************************** System Methods **************************//
     void Start() {
         // Definicón de variables
-        obstacle = false;
-        distanceWallDetection = 5.5f;      
+        distanceWallDetection = 10f;      
         distancePlayerDetection = 120f;    
         playerLayer = 1 << 8;
         obstacleLayer = 1 << 7;
@@ -47,39 +45,6 @@ public class MinotaurControl : MonoBehaviour
     }
 
     void Update() {
-
-        // Rotación
-        // Verifico si tengo obstaculos u otro enemigo delante, y en caso de haber, determino hacia donde doblar
-        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer + enemyLayer)) {
-            // Si la derecha está ocupada, dobla a la izquierda
-            if(Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer)) {
-                minotaurRotation.TurnLeft();
-            }
-            // Si la izquierda está ocupada, dobla a la derecha
-            else if(Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer)) {
-                minotaurRotation.TurnRight();
-            }
-            // Si ambos lados están libres, dobla de manera aleatoria
-            else {
-                if(randomTurn.Next(1, 11) <= 5) {
-                    minotaurRotation.TurnRight();
-                }
-                else minotaurRotation.TurnLeft();
-            }
-            obstacle = true;    // Indico que hubo un obstaculo   
-        }
-        // En caso de no haber verifico si hay huecos para doblar aleatoriamente
-        if(!obstacle) {
-            // Veo un hueco a la derecha
-            if(!Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 98) {
-                minotaurRotation.TurnRight();
-            }
-            // Veo un hueco a la izquierda
-            else if(!Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 98) {
-                minotaurRotation.TurnLeft();
-            }
-        }     
-
         // Me muevo hacia delante
         minotaurMovement.MoveForward();
 
@@ -134,7 +99,44 @@ public class MinotaurControl : MonoBehaviour
     }
 
     //************************** Events **************************//
+    
+    // Entro en contacto con un Rotation Trigger
     public void OnChildTriggerEnter() {
-        Debug.Log("Hubo colision");
+        Debug.Log("Trigger");
+        // Verifico si tengo obstaculos delante, y en caso de haber, determino hacia donde doblar
+        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer)) {
+            // Si la derecha está ocupada, dobla a la izquierda
+            if(Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer)) {
+                minotaurRotation.TurnLeft();
+                OnChildTriggerEnter();  // Utilizo recursividad para evitar un callejon sin salida
+            }
+            // Si la izquierda está ocupada, dobla a la derecha
+            else if(Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer)) {
+                minotaurRotation.TurnRight();
+                OnChildTriggerEnter();
+            }
+            // Si ambos lados están libres, dobla de manera aleatoria
+            else {
+                Debug.Log("Trigger random");
+                if(randomTurn.Next(1, 11) <= 5) {
+                    minotaurRotation.TurnRight();
+                }
+                else minotaurRotation.TurnLeft();
+            }
+        }
+        // En caso de no haber verifico si hay huecos para doblar aleatoriamente
+        else {
+            // Veo un hueco a la derecha
+            if(!Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 90) {
+                minotaurRotation.TurnRight();
+            }
+            // Veo un hueco a la izquierda
+            else if(!Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 90) {
+                minotaurRotation.TurnLeft();
+            }
+        }     
     }
+
+
+    // VER EL TEMA DE CRUZARSE CON OTRO ENEMIGO
 }
