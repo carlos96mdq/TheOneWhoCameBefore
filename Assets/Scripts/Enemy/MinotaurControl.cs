@@ -78,7 +78,7 @@ public class MinotaurControl : MonoBehaviour
             else if(!Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 98) {
                 minotaurRotation.TurnLeft();
             }
-        }   
+        }     
 
         // Me muevo hacia delante
         minotaurMovement.MoveForward();
@@ -133,4 +133,8 @@ public class MinotaurControl : MonoBehaviour
         return (playerState == State.SEARCHING);
     }
 
+    //************************** Events **************************//
+    public void OnChildTriggerEnter() {
+        Debug.Log("Hubo colision");
+    }
 }
