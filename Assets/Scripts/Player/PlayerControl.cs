@@ -40,7 +40,6 @@ public class PlayerControl : MonoBehaviour
             // Si recupero la stamina suficiente dejo de estar cansado
             if(playerStamina.RecoverStamina()) {
                 StateIdle();
-                playerEvents.InvokeOnStateChange(GetState());
             }  
         }
         // Caso contrario verifico si se mueve
@@ -52,7 +51,6 @@ public class PlayerControl : MonoBehaviour
                     // Si anteriormente el Player no estaba quito, lo pongo quieto
                     if(!IsIdle()) {
                         StateIdle();
-                        playerEvents.InvokeOnStateChange(GetState());
                     }
                     // Recupero stamina
                     playerStamina.RecoverStamina();
@@ -62,7 +60,6 @@ public class PlayerControl : MonoBehaviour
                     // Si anteriormente el Player no estaba caminando, lo pongo caminando
                     if(!IsWalking()) {
                         StateWalking();
-                        playerEvents.InvokeOnStateChange(GetState());
                     }
                     playerStamina.RecoverStamina();
                     break;
@@ -70,13 +67,11 @@ public class PlayerControl : MonoBehaviour
                 case 2:
                     if(!IsRunning()) {
                         StateRuning();
-                        playerEvents.InvokeOnStateChange(GetState());
                     }
 
                     // Si se agota la stamina pasa a estado RECOVERING
                     if(playerStamina.ConsumeStamina()) {
                         StateRecovering();
-                        playerEvents.InvokeOnStateChange(GetState());
                     }
                     break;
             }
@@ -97,18 +92,26 @@ public class PlayerControl : MonoBehaviour
     
     public void StateIdle() {
         playerState = State.IDLE;
+        playerEvents.InvokeOnStateChange(GetState());
+
     }
 
     public void StateWalking() {
         playerState = State.WALKING;
+        playerEvents.InvokeOnStateChange(GetState());
+
     }
 
     public void StateRuning() {
         playerState = State.RUNNING;
+        playerEvents.InvokeOnStateChange(GetState());
+
     }
 
     public void StateRecovering() {
         playerState = State.RECOVERING;
+        playerEvents.InvokeOnStateChange(GetState());
+
     }
 
     public bool IsIdle() {

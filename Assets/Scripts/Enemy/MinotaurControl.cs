@@ -12,6 +12,7 @@ public class MinotaurControl : MonoBehaviour
     public enum State
     {
         IDLE,
+        ROTATING,
         WALKING,
         RUNNING,
         SEARCHING
@@ -135,6 +136,13 @@ public class MinotaurControl : MonoBehaviour
                 minotaurRotation.TurnLeft();
             }
         }     
+    }
+
+    //************************** Courutines **************************//
+
+    // Corutina para rotar lentamente
+    IEnumerator Rotation() {
+        yield return null;
     }
 
 

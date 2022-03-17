@@ -18,12 +18,16 @@ public class MinotaurRotation : MonoBehaviour
 
     // Dobla a la derecha
     public void TurnRight() {
-        transform.Rotate(new Vector3(0f, 90f, 0f));
+        Quaternion actualRotation = transform.rotation;
+        // transform.Rotate(new Vector3(0f, 90f, 0f));
+        transform.rotation = Quaternion.Lerp(actualRotation, actualRotation * Quaternion.Euler(0f, 90f, 0f), 0.5f);
     }
 
     // Dobla a la izquierda
     public void TurnLeft() {
-        transform.Rotate(new Vector3(0f, -90f, 0f));
+        // transform.Rotate(new Vector3(0f, -90f, 0f));
+        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.Euler(0f, -90f, 0f), 0.5f);
+
     }
 
 }
