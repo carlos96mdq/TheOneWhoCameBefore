@@ -9,6 +9,7 @@ public class MinotaurRotation : MonoBehaviour
 {
     //************************** Variables **************************//
     // Private
+    Quaternion initialRotation;  // La rotación en el momento que empieza a rotar
 
     // Public
 
@@ -16,18 +17,19 @@ public class MinotaurRotation : MonoBehaviour
 
     //************************** Methods **************************//
 
-    // Dobla a la derecha
-    public void TurnRight() {
-        Quaternion actualRotation = transform.rotation;
-        // transform.Rotate(new Vector3(0f, 90f, 0f));
-        transform.rotation = Quaternion.Lerp(actualRotation, actualRotation * Quaternion.Euler(0f, 90f, 0f), 0.5f);
+    // Doblar (0: a la derecha y 1: a la izquierda)
+    public void Turn(float progression, int direction) {
+        if(direction == 0) {
+            transform.rotation = Quaternion.Lerp(initialRotation, initialRotation * Quaternion.Euler(0f, 90f, 0f), progression);
+        }
+        else {
+            transform.rotation = Quaternion.Lerp(initialRotation, initialRotation * Quaternion.Euler(0f, -90f, 0f), progression);
+        }
     }
-
-    // Dobla a la izquierda
-    public void TurnLeft() {
-        // transform.Rotate(new Vector3(0f, -90f, 0f));
-        transform.rotation = Quaternion.Lerp(transform.rotation, transform.rotation * Quaternion.Euler(0f, -90f, 0f), 0.5f);
-
+    
+    // Modifica el angulo de rotación inicial con el actual
+    public void ChangeInitialRotation() {
+        initialRotation = transform.rotation;
     }
 
 }

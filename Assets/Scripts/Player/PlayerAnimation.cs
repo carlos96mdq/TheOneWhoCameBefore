@@ -9,11 +9,11 @@ public class PlayerAnimation : MonoBehaviour
 {
     //************************** Variables **************************//
     // Private
-    Animator playerAnimation;
+    Animator playerAnimator;
 
     //************************** System Methods **************************//
     void Start() {
-        playerAnimation = GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<Animator>();
     }
 
     //************************** Methods **************************//
@@ -22,20 +22,20 @@ public class PlayerAnimation : MonoBehaviour
     public void ChangeAnimationState(PlayerControl.State state) {
         switch (state) {
             case PlayerControl.State.WALKING:
-                playerAnimation.SetBool("isMoving", true);
-                playerAnimation.SetBool("isRunning", false);
+                playerAnimator.SetBool("isMoving", true);
+                playerAnimator.SetBool("isRunning", false);
                 break;
             case PlayerControl.State.RUNNING:
-                playerAnimation.SetBool("isMoving", true);
-                playerAnimation.SetBool("isRunning", true);
+                playerAnimator.SetBool("isMoving", true);
+                playerAnimator.SetBool("isRunning", true);
                 break;
             case PlayerControl.State.RECOVERING:
-                playerAnimation.SetBool("isTired", true);
+                playerAnimator.SetBool("isTired", true);
                 break;
             default:
-                playerAnimation.SetBool("isMoving", false);
-                playerAnimation.SetBool("isRunning", false);
-                playerAnimation.SetBool("isTired", false);
+                playerAnimator.SetBool("isMoving", false);
+                playerAnimator.SetBool("isRunning", false);
+                playerAnimator.SetBool("isTired", false);
                 break;
         }  
     }

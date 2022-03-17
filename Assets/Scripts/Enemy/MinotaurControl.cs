@@ -20,14 +20,17 @@ public class MinotaurControl : MonoBehaviour
 
     //************************** Variables **************************//
     // Public
+    public MinotaurEvents minotaurEvents;       // Script de eventos
     public MinotaurMovement minotaurMovement;   // Script de movimiento
     public MinotaurRotation minotaurRotation;   // Script de mrotación
 
     // Private
-    State playerState;              // Indica el estado del Player
+    State minotaurState;            // Indica el estado del Minotaur
     System.Random randomTurn;       // Numero random que determina si el minotauro dobla o no
     float distanceWallDetection;    // Distancia a la que detecta un objeto y dobla
     float distancePlayerDetection;  // Distancia a la que detecta al player
+    float rotationProgres;          // Rotación ya realizada
+    int rotationDir;                // Dirección de rotación, siendo 0 derecha y 1 izquierda
     int playerLayer;                // Bitmask de la layer 9 para el Raycast 
     int obstacleLayer;              // Bitmask de la layer 7 para el Raycast
     int enemyLayer;                 // Bitmask de la layer 10 para el Raycast  
@@ -42,98 +45,139 @@ public class MinotaurControl : MonoBehaviour
         enemyLayer = 1 << 10;
         randomTurn = new System.Random((int)DateTime.Now.Ticks); 
 
-        StateWalking();
+        StateIdle();
     }
 
     void Update() {
-        // Me muevo hacia delante
-        minotaurMovement.MoveForward();
 
-        // Realiza una busqueda del player en linea recta
-        RaycastHit hit;                             // Almacena información sobre el primer collider detectado por el raycast
-        // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
-        if(Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer + obstacleLayer) &&
-           hit.collider.tag == "PlayerTrigger") {
-            StateRuning();
-        }
-        else {
-            StateWalking();
+        // Depende el estado prosigo
+        switch (minotaurState) {
+
+            // Para cuando arranca la primera vez
+            case State.IDLE:
+                // Comienzo a moverme cuando me activo
+                StateWalking();
+                // StateRuning();
+                break;
+
+            // Está caminando
+            case State.WALKING:
+                // Me muevo hacia delante (false es porque no está corriendo)
+                minotaurMovement.MoveForward(false);
+                // Realiza una busqueda del player en linea recta
+                RaycastHit hit;                             // Almacena información sobre el primer collider detectado por el raycast
+                // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
+                if(Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer) && hit.collider.tag == "PlayerTrigger") {
+                    StateRuning();
+                }
+                break;
+            
+            // Está corriendo. Entra en un estado de estampida que no para ahsta llegar a una pared
+            case State.RUNNING:
+                // Me muevo hacia delante (false es porque no está corriendo)
+                minotaurMovement.MoveForward(true);
+                break;
+            
+            // Está doblando
+            case State.ROTATING:
+                // Aumento el progreso de rotación, la escala seria cuanta progresión por segundo
+                // rotationProgres += 0.5f * Time.deltaTime;
+                rotationProgres += 0.5f * Time.deltaTime;
+                // Si se llega al fin del progreso
+                if(rotationProgres >= 1.0f) {
+                    rotationProgres = 1.0f;
+                    minotaurRotation.Turn(rotationProgres, rotationDir);
+                    StateWalking();
+                    OnChildTriggerEnter();  // Esto es importante, lo utilizo para verificar que aunque doble no siga teniendo obstaculos
+                }
+                else {
+                    minotaurRotation.Turn(rotationProgres, rotationDir);
+                }
+                break;
         }
     }
 
     //************************** Methods **************************//
 
     public State GetState() {
-        return playerState;
+        return minotaurState;
     }
     
     public void StateIdle() {
-        playerState = State.IDLE;
+        minotaurState = State.IDLE;
+    }
+
+    // direction indica la dirección donde va a doblar, siendo 0 la derecha y 1 la izquierda
+    public void StateRotating(int direction) {
+        minotaurState = State.ROTATING;
+        rotationDir = direction;
+        rotationProgres = 0f;
+        minotaurRotation.ChangeInitialRotation();
+        minotaurEvents.InvokeOnStateChange(GetState());
     }
 
     public void StateWalking() {
-        playerState = State.WALKING;
+        minotaurState = State.WALKING;
+        minotaurEvents.InvokeOnStateChange(GetState());
     }
 
     public void StateRuning() {
-        playerState = State.RUNNING;
+        minotaurState = State.RUNNING;
+        minotaurEvents.InvokeOnStateChange(GetState());
     }
 
     public void StateSearching() {
-        playerState = State.SEARCHING;
+        minotaurState = State.SEARCHING;
     }
 
     public bool IsIdle() {
-        return (playerState == State.IDLE);
+        return (minotaurState == State.IDLE);
+    }
+
+    public bool IsRotating() {
+        return (minotaurState == State.ROTATING);
     }
 
     public bool IsWalking() {
-        return (playerState == State.WALKING);
+        return (minotaurState == State.WALKING);
     }
 
     public bool IsRunning() {
-        return (playerState == State.RUNNING);
+        return (minotaurState == State.RUNNING);
     }
 
     public bool IsSearching() {
-        return (playerState == State.SEARCHING);
+        return (minotaurState == State.SEARCHING);
     }
 
     //************************** Events **************************//
     
     // Entro en contacto con un Rotation Trigger
     public void OnChildTriggerEnter() {
-        Debug.Log("Trigger");
         // Verifico si tengo obstaculos delante, y en caso de haber, determino hacia donde doblar
         if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer)) {
             // Si la derecha está ocupada, dobla a la izquierda
             if(Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer)) {
-                minotaurRotation.TurnLeft();
-                OnChildTriggerEnter();  // Utilizo recursividad para evitar un callejon sin salida
+                StateRotating(1);
             }
             // Si la izquierda está ocupada, dobla a la derecha
             else if(Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer)) {
-                minotaurRotation.TurnRight();
-                OnChildTriggerEnter();
+                StateRotating(0);
             }
             // Si ambos lados están libres, dobla de manera aleatoria
             else {
-                Debug.Log("Trigger random");
-                if(randomTurn.Next(1, 11) <= 5) {
-                    minotaurRotation.TurnRight();
-                }
-                else minotaurRotation.TurnLeft();
+                StateRotating(randomTurn.Next(0, 2));
             }
         }
-        // En caso de no haber verifico si hay huecos para doblar aleatoriamente
-        else {
+        // En caso de no haber obstaculo y estar caminando, verifico si hay huecos para doblar aleatoriamente
+        else if(IsWalking()) {
             // Veo un hueco a la derecha
             if(!Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 90) {
-                minotaurRotation.TurnRight();
+                StateRotating(0);
             }
             // Veo un hueco a la izquierda
             else if(!Physics.Raycast(transform.position, -transform.right, distanceWallDetection * 2, obstacleLayer) && randomTurn.Next(100) > 90) {
-                minotaurRotation.TurnLeft();
+                StateRotating(1);
             }
         }     
     }

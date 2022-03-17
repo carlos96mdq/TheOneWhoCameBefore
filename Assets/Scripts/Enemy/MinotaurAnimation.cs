@@ -2,22 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* MinotaurAnimation Class
+** En este scriptse actualizan los parametros del Animator de Minotaur 
+*/
 public class MinotaurAnimation : MonoBehaviour
 {
-    Animator minotaurAnimation;         // Animator del Minotauro 
-    MinotaurMovement minotaurScript;    // Script de movimiento del Minotauro, obtengo una referencia al mismo 
-                                        // para utilizar sus variables publicas
+    //************************** Variables **************************//
+    // Private
+    Animator minotaurAnimator;         // Animator del Minotauro 
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        minotaurAnimation = GetComponentInChildren<Animator>();
-        minotaurScript = this.gameObject.GetComponent<MinotaurMovement>();
+    //************************** System Methods **************************//
+    void Start() {
+        minotaurAnimator = GetComponentInChildren<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        minotaurAnimation.SetBool("isRunning", minotaurScript.isRunning);
+    //************************** Methods **************************//
+        // Cambia el valor de las variables que rigen las animaciones
+    public void ChangeAnimationState(MinotaurControl.State state) {
+        switch (state) {
+            case MinotaurControl.State.WALKING:
+                minotaurAnimator.SetBool("isRotating", false);
+                minotaurAnimator.SetBool("isRunning", false);
+                break;
+            case MinotaurControl.State.RUNNING:
+                minotaurAnimator.SetBool("isRotating", false);
+                minotaurAnimator.SetBool("isRunning", true);
+                break;
+            case MinotaurControl.State.ROTATING:
+                minotaurAnimator.SetBool("isRotating", true);
+                minotaurAnimator.SetBool("isRunning", false);
+                break;
+            default:
+                minotaurAnimator.SetBool("isRotating", false);
+                minotaurAnimator.SetBool("isRunning", false);
+                break;
+        }  
     }
+
 }

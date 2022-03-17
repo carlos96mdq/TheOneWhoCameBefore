@@ -30,5 +30,4 @@ public class PlayerEvents : MonoBehaviour
     public void InvokeOnStateChange(PlayerControl.State state) {
         onStateChange?.Invoke(state);
     }
-
 }
