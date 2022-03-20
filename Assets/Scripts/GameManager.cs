@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/* GameManager Class
+** Controlador central del juego, singleton
+*/
 public class GameManager : MonoBehaviour
 {
+    //************************** Variables **************************//
+    // Private
     int width;                      // Estas tres variables manejan la resolución y modo de la pantalla
     int height;
     FullScreenMode fullscreenMode;
-    
+    float mouseSensibility;         // Valor de sensibilidad del mouse a la hora de controlar la camara
+
+    // Public
     public static GameManager instance;
     
-    void Awake() 
-    {
+    //************************** System Methods **************************//
+    void Awake() {
         // Singleton implementado
         if(instance != null && this != instance) {
             Destroy(gameObject);
@@ -24,6 +31,8 @@ public class GameManager : MonoBehaviour
         InitialConfig();                    // Configuración inicial del nivel
     }
 
+    //************************** Methods **************************//
+    
     // Configuración inicial del juego
     void InitialConfig() {
         QualitySettings.vSyncCount = 1;
@@ -31,6 +40,7 @@ public class GameManager : MonoBehaviour
         width = 1200;               
         height = 720;
         fullscreenMode = FullScreenMode.ExclusiveFullScreen;
+        mouseSensibility = 1f;
         ChangeScreen();
     }
 
@@ -60,6 +70,11 @@ public class GameManager : MonoBehaviour
         AudioListener.volume = newVolume;
     }
 
+    // Cambia la sensibilidad de la cámara
+    public void SensibilityUpdate(float newSensibility) {
+        mouseSensibility = newSensibility;
+    }
+
     // Sale del juego
     public void QuitGame() {
         Debug.Log("Exit game");
@@ -70,5 +85,10 @@ public class GameManager : MonoBehaviour
         #else
             Application.Quit();
         #endif
+    }
+
+    // Devuelve la sensibilidad del mouse
+    public float GetMouseSensibility() {
+        return mouseSensibility;
     }
 }

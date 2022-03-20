@@ -12,13 +12,4 @@ public class KillPlayer : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    
-    // void OnControllerColliderHit(ControllerColliderHit hit)
-    // {
-    //     if(hit.gameObject.tag == "Player") {
-
-    //         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //     }
-    // }
 }

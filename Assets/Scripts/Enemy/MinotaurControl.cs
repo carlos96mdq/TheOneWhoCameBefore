@@ -182,13 +182,5 @@ public class MinotaurControl : MonoBehaviour
         }     
     }
 
-    //************************** Courutines **************************//
-
-    // Corutina para rotar lentamente
-    IEnumerator Rotation() {
-        yield return null;
-    }
-
-
     // VER EL TEMA DE CRUZARSE CON OTRO ENEMIGO
 }

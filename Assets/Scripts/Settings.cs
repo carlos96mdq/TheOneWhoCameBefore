@@ -4,14 +4,22 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-
+/* Settings Class
+** Controla los eventos producidos por modificar parametros en el menu de settings
+*/
 public class Settings : MonoBehaviour
 {
+    //************************** Variables **************************//
+    // Public
     public Slider volumeSlider;             // Slider del volumen
+    public Slider sensibilitySlider;        // Slider de la sensibilidad de la cámara
     public ToggleGroup resolutionToggles;   // Toggles que manejan la resolución
     public GameManager gameManager;         // Referencia al GameManager
+    public PlayerRotation playerRotation;   // Script de rotación de la camara del Player
 
-    // Handler de los Toggles de Resolución
+    //************************** Events **************************//
+
+    // Handler de los Toggles de Resolución de pantalla
     public void OnScreenResolutionChangedHandled(int mode) {
         int width = 1200;
         int height = 720;
@@ -63,5 +71,15 @@ public class Settings : MonoBehaviour
         GameManager.instance.VolumeUpdate(volumeSlider.value);
         Debug.Log("Handler OnVolumeValueChangedHandled llamado por evento OnValueChanged del Volume Slider");
         Debug.Log("Nuevo valor de volumen: " + volumeSlider.value);
-    } 
+    }
+
+    // Handler del Slider de Sensibilidad de la camara
+    public void OnSensibilityValueChangedHandled() {
+        GameManager.instance.SensibilityUpdate(sensibilitySlider.value);
+        if(playerRotation) {    // Este if solo se ejecuta si se encuentra una referencia a la cámara del Player
+            playerRotation.ChangeSensibility(sensibilitySlider.value);
+        }
+        Debug.Log("Handler OnSensibilityValueChangedHandled llamado por evento OnValueChanged del Volume Slider");
+        Debug.Log("Nuevo valor de la sensibilidad: " + sensibilitySlider.value);
+    }
 }
