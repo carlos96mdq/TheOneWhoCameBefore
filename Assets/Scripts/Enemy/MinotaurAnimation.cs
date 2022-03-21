@@ -23,18 +23,24 @@ public class MinotaurAnimation : MonoBehaviour
             case MinotaurControl.State.WALKING:
                 minotaurAnimator.SetBool("isRotating", false);
                 minotaurAnimator.SetBool("isRunning", false);
+                minotaurAnimator.SetBool("isRoaring", false);
                 break;
             case MinotaurControl.State.RUNNING:
                 minotaurAnimator.SetBool("isRotating", false);
                 minotaurAnimator.SetBool("isRunning", true);
+                minotaurAnimator.SetBool("isRoaring", false);
                 break;
             case MinotaurControl.State.ROTATING:
                 minotaurAnimator.SetBool("isRotating", true);
                 minotaurAnimator.SetBool("isRunning", false);
                 break;
+            case MinotaurControl.State.ROARING:
+                minotaurAnimator.SetBool("isRoaring", true);
+                break;
             default:
                 minotaurAnimator.SetBool("isRotating", false);
                 minotaurAnimator.SetBool("isRunning", false);
+                minotaurAnimator.SetBool("isRoaring", false);
                 break;
         }  
     }

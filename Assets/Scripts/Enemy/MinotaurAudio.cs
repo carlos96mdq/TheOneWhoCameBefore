@@ -11,9 +11,10 @@ public class MinotaurAudio : MonoBehaviour
     // Private
     float walkingFrecuency;                 // Velocidad de pazos en caminata
     float runningFrecuency;                 // Velocidad de pazos en corrida
-    AudioSource footsteps;                  // Efecto de sonido de pazos
 
     // Public
+    public AudioSource footsteps;           // Efecto de sonido de pazos
+    public AudioSource roar;                // Efecto de sonido de rugido
     public CharacterConstants constants;    // Constantes
 
     //************************** System Methods **************************//
@@ -23,7 +24,6 @@ public class MinotaurAudio : MonoBehaviour
         runningFrecuency = constants.runningFrecuency;
 
         // Asigno cada audio
-        footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;
     }
 
@@ -40,6 +40,10 @@ public class MinotaurAudio : MonoBehaviour
         else {
             Debug.Log("Deja de reproducirse");
             footsteps.Pause();
+        }
+
+        if(state == MinotaurControl.State.ROARING) {
+            roar.Play();
         }
     }
     

@@ -11,11 +11,12 @@ public class PlayerAudio : MonoBehaviour
     // Private
     float walkingFrecuency;                 // Velocidad de pazos en caminata
     float runningFrecuency;                 // Velocidad de pazos en corrida
-    AudioSource footsteps;                  // Efecto de sonido de pazos
 
     // Public
+    public AudioSource footsteps;           // Efecto de sonido de pazos
+    public AudioSource breath;              // Efecto de sonido de la respiración
+    public AudioSource heavyBreath;              // Efecto de sonido de la respiración pesada al estar cansado
     public CharacterConstants constants;    // Constantes
-        PlayerControl playerControl;
 
     //************************** System Methods **************************//
     void Start() {
@@ -24,7 +25,6 @@ public class PlayerAudio : MonoBehaviour
         runningFrecuency = constants.runningFrecuency;
 
         // Asigno cada audio
-        footsteps = GetComponent<AudioSource>();
         footsteps.pitch = walkingFrecuency;
     }
 
@@ -39,6 +39,24 @@ public class PlayerAudio : MonoBehaviour
         }
         else {
             footsteps.Pause();
+        }
+
+        if(state == PlayerControl.State.RUNNING) {
+            if(!breath.isPlaying) {
+                breath.Play();
+            }
+        }
+        else {
+            breath.Stop();
+        }
+
+        if(state == PlayerControl.State.RECOVERING) {
+            if(!breath.isPlaying) {
+                heavyBreath.Play();
+            }
+        }
+        else {
+            heavyBreath.Stop();
         }
     }
     

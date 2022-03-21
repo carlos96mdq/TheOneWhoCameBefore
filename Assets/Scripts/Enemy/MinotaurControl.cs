@@ -9,13 +9,12 @@ using System;
 public class MinotaurControl : MonoBehaviour
 {
     //************************** Types **************************//
-    public enum State
-    {
+    public enum State {
         IDLE,
+        ROARING,
         ROTATING,
         WALKING,
-        RUNNING,
-        SEARCHING
+        RUNNING
     }
 
     //************************** Variables **************************//
@@ -30,6 +29,8 @@ public class MinotaurControl : MonoBehaviour
     float distanceWallDetection;    // Distancia a la que detecta un objeto y dobla
     float distancePlayerDetection;  // Distancia a la que detecta al player
     float rotationProgres;          // Rotación ya realizada
+    float roarTime;                 // La duración en segundos del rugido
+    float roarDuration;             // La duración máxima del rugido
     int rotationDir;                // Dirección de rotación, siendo 0 derecha y 1 izquierda
     int playerLayer;                // Bitmask de la layer 9 para el Raycast 
     int obstacleLayer;              // Bitmask de la layer 7 para el Raycast
@@ -39,7 +40,9 @@ public class MinotaurControl : MonoBehaviour
     void Start() {
         // Definicón de variables
         distanceWallDetection = 10f;      
-        distancePlayerDetection = 120f;    
+        distancePlayerDetection = 120f;
+        roarTime = 0f; 
+        roarDuration = 3f;   
         playerLayer = 1 << 8;
         obstacleLayer = 1 << 7;
         enemyLayer = 1 << 10;
@@ -56,8 +59,19 @@ public class MinotaurControl : MonoBehaviour
             // Para cuando arranca la primera vez
             case State.IDLE:
                 // Comienzo a moverme cuando me activo
-                StateWalking();
+                StateRoaring();
+                Debug.Log("Cambie a estado rugiendo");
+                // StateWalking();
                 // StateRuning();
+                break;
+
+            case State.ROARING:
+                // Rujo durante 3 segundos
+                roarTime += Time.deltaTime;
+                if(roarTime > roarDuration) {
+                    roarTime = 0f;
+                    StateRuning();
+                }
                 break;
 
             // Está caminando
@@ -107,6 +121,11 @@ public class MinotaurControl : MonoBehaviour
         minotaurState = State.IDLE;
     }
 
+    public void StateRoaring() {
+        minotaurState = State.ROARING;
+        minotaurEvents.InvokeOnStateChange(GetState());
+    }
+
     // direction indica la dirección donde va a doblar, siendo 0 la derecha y 1 la izquierda
     public void StateRotating(int direction) {
         minotaurState = State.ROTATING;
@@ -126,12 +145,12 @@ public class MinotaurControl : MonoBehaviour
         minotaurEvents.InvokeOnStateChange(GetState());
     }
 
-    public void StateSearching() {
-        minotaurState = State.SEARCHING;
-    }
-
     public bool IsIdle() {
         return (minotaurState == State.IDLE);
+    }
+
+    public bool IsRoaring() {
+        return (minotaurState == State.ROARING);
     }
 
     public bool IsRotating() {
@@ -144,10 +163,6 @@ public class MinotaurControl : MonoBehaviour
 
     public bool IsRunning() {
         return (minotaurState == State.RUNNING);
-    }
-
-    public bool IsSearching() {
-        return (minotaurState == State.SEARCHING);
     }
 
     //************************** Events **************************//
