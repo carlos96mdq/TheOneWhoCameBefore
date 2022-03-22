@@ -8,7 +8,7 @@ public class CameraControl : MonoBehaviour
     // [SerializeField] GameObject thirdPersonCamera;
     [SerializeField] Transform playerCamera;
 
-    Vector3 firstPersonView = new Vector3(0, 1.45f, 0.46f);
+    Vector3 firstPersonView = new Vector3(0, 1.62f, 0.77f);
     Vector3 thirdPersonView = new Vector3(0, 2.40f, -4.22f);
 
     // Start is called before the first frame update
