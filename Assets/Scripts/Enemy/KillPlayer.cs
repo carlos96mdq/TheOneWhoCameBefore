@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 /* KillPlayer Class
@@ -10,6 +9,6 @@ public class KillPlayer : MonoBehaviour
 {   
     //************************** Events **************************//
     void OnTriggerEnter(Collider other) {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelOneManager.instance.LoseGame();
     }
 }

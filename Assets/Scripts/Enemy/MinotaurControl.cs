@@ -34,11 +34,13 @@ public class MinotaurControl : MonoBehaviour
     int rotationDir;                // Dirección de rotación, siendo 0 derecha y 1 izquierda
     int playerLayer;                // Bitmask de la layer 9 para el Raycast 
     int obstacleLayer;              // Bitmask de la layer 7 para el Raycast
-    int enemyLayer;                 // Bitmask de la layer 10 para el Raycast  
+    int enemyLayer;                 // Bitmask de la layer 10 para el Raycast 
+    bool isFirstRoar;               // Se utiliza para determinar si es el primer rugido 
 
     //************************** System Methods **************************//
     void Start() {
         // Definicón de variables
+        isFirstRoar = true;
         distanceWallDetection = 10f;      
         distancePlayerDetection = 120f;
         roarTime = 0f; 
@@ -69,8 +71,14 @@ public class MinotaurControl : MonoBehaviour
                 // Rujo durante 3 segundos
                 roarTime += Time.deltaTime;
                 if(roarTime > roarDuration) {
+                    if(isFirstRoar) {
+                        isFirstRoar = false;
+                        StateWalking();
+                    }
+                    else {
+                        StateRuning();
+                    }
                     roarTime = 0f;
-                    StateRuning();
                 }
                 break;
 
@@ -82,11 +90,12 @@ public class MinotaurControl : MonoBehaviour
                 RaycastHit hit;                             // Almacena información sobre el primer collider detectado por el raycast
                 // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
                 if(Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer) && hit.collider.tag == "PlayerTrigger") {
-                    StateRuning();
+                    StateRoaring();
+                    Debug.Log("Cambie a estado rugiendo");
                 }
                 break;
             
-            // Está corriendo. Entra en un estado de estampida que no para ahsta llegar a una pared
+            // Está corriendo. Entra en un estado de estampida que no para hasta llegar a una pared
             case State.RUNNING:
                 // Me muevo hacia delante (false es porque no está corriendo)
                 minotaurMovement.MoveForward(true);
@@ -102,6 +111,7 @@ public class MinotaurControl : MonoBehaviour
                     rotationProgres = 1.0f;
                     minotaurRotation.Turn(rotationProgres, rotationDir);
                     StateWalking();
+                    Debug.Log("Cambie a estado caminando");
                     OnChildTriggerEnter();  // Esto es importante, lo utilizo para verificar que aunque doble no siga teniendo obstaculos
                 }
                 else {
@@ -132,6 +142,7 @@ public class MinotaurControl : MonoBehaviour
         rotationDir = direction;
         rotationProgres = 0f;
         minotaurRotation.ChangeInitialRotation();
+        LevelOneManager.instance.ChangeChromatic(false);
         minotaurEvents.InvokeOnStateChange(GetState());
     }
 
@@ -142,6 +153,7 @@ public class MinotaurControl : MonoBehaviour
 
     public void StateRuning() {
         minotaurState = State.RUNNING;
+        LevelOneManager.instance.ChangeChromatic(true);
         minotaurEvents.InvokeOnStateChange(GetState());
     }
 

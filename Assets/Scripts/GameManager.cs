@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /* GameManager Class
-** Controlador central del juego, singleton
+** Controlador central del juego, Singleton
 */
 public class GameManager : MonoBehaviour
 {
