@@ -9,6 +9,12 @@ public class KillPlayer : MonoBehaviour
 {   
     //************************** Events **************************//
     void OnTriggerEnter(Collider other) {
-        LevelOneManager.instance.LoseGame();
+        // En caso de chocarme con otro Minotauro, uno debe morir para que no se traben
+        if(other.tag == "Enemy") {
+            Destroy(other.gameObject);  
+        }
+        else {
+            LevelOneManager.instance.LoseGame();
+        }
     }
 }

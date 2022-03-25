@@ -182,7 +182,7 @@ public class MinotaurControl : MonoBehaviour
     // Entro en contacto con un Rotation Trigger
     public void OnChildTriggerEnter() {
         // Verifico si tengo obstaculos delante, y en caso de haber, determino hacia donde doblar
-        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer)) {
+        if(Physics.Raycast(transform.position, transform.forward, distanceWallDetection, obstacleLayer + enemyLayer)) {
             // Si la derecha está ocupada, dobla a la izquierda
             if(Physics.Raycast(transform.position, transform.right, distanceWallDetection * 2, obstacleLayer)) {
                 StateRotating(1);
