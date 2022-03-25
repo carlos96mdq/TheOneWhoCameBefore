@@ -24,9 +24,9 @@ public class HudTime : MonoBehaviour
     }
 
     void ShowTime() {
-        //string gameActualTime = GameManager.instance.gameTimer.ToString();
         float gameActualTime = LevelOneManager.instance.levelTimer;
-        timeCounterText.text = Math.Truncate(gameActualTime).ToString() + ":";
-        timeCounterText.text += Math.Truncate((gameActualTime - Math.Truncate(gameActualTime)) * 100).ToString();
+        timeCounterText.text = Math.Truncate(gameActualTime).ToString();
+        // timeCounterText.text = Math.Truncate(gameActualTime).ToString() + ":";
+        // timeCounterText.text += Math.Truncate((gameActualTime - Math.Truncate(gameActualTime)) * 100).ToString();
     }
 }
