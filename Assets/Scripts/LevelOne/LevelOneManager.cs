@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class LevelOneManager : MonoBehaviour
 
     //Public
     public float levelTimer;            // Timer general de la duración de la partida
+    public float fpsCounter;              // Contador de fps, calculado frame a frame
     public GameObject pauseMenu;        // Menu de pausa
     public GameObject settingsMenu;     // Menu de setting
     public GameObject controlsScreen;   // Pantalla que muestra la lista de controles
