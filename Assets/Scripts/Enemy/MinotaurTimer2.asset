@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MinotaurTimer2
   m_EditorClassIdentifier: 
   initialTime: 0
-  finishTime: 60000
+  finishTime: 60
