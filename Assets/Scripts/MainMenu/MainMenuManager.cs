@@ -7,6 +7,7 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager instance;
 
     public GameObject settingsMenu;
+    public GameObject creditsScreen;
     public GameObject loadingScreen;
     
     void Awake() 
@@ -38,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
 
         // Al inicio el menu de settings y la LoadingScreen se encuentran desactivadas
         settingsMenu.SetActive(false);
+        creditsScreen.SetActive(false);
         loadingScreen.SetActive(false);
     }
     
@@ -48,6 +50,10 @@ public class MainMenuManager : MonoBehaviour
         if(settingsMenu.activeSelf) {
             settingsMenu.SetActive(false);
         }
+        // Si el credits screen está activado
+        else if(creditsScreen.activeSelf) {
+            creditsScreen.SetActive(false);
+        }
         // Si no, sale del juego
         else {
             GameManager.instance.QuitGame();
@@ -57,6 +63,11 @@ public class MainMenuManager : MonoBehaviour
     // Abre el settings Menu
     public void OpenSettingsMenu() {
         settingsMenu.SetActive(true);
+    }
+
+    // Abre el settings Menu
+    public void OpenCreditsScreen() {
+        creditsScreen.SetActive(true);
     }
 
     // Activa la LoadingScreen
