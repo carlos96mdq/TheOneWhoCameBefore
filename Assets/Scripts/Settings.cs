@@ -69,7 +69,6 @@ public class Settings : MonoBehaviour
     // Handler del Slider de Volumen
     public void OnVolumeValueChangedHandled() {
         GameManager.instance.VolumeUpdate(volumeSlider.value);
-        Debug.Log("Handler OnVolumeValueChangedHandled llamado por evento OnValueChanged del Volume Slider");
         Debug.Log("Nuevo valor de volumen: " + volumeSlider.value);
     }
 
@@ -79,7 +78,6 @@ public class Settings : MonoBehaviour
         if(playerRotation) {    // Este if solo se ejecuta si se encuentra una referencia a la cámara del Player
             playerRotation.ChangeSensibility(sensibilitySlider.value);
         }
-        Debug.Log("Handler OnSensibilityValueChangedHandled llamado por evento OnValueChanged del Volume Slider");
         Debug.Log("Nuevo valor de la sensibilidad: " + sensibilitySlider.value);
     }
 }

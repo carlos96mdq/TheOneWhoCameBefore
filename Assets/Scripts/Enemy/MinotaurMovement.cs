@@ -37,4 +37,8 @@ public class MinotaurMovement : MonoBehaviour
         }
     }
 
+    // Avanza hacia atras
+    public void MoveBackward() {
+        controller.Move(-transform.forward * movementSpeed * Time.deltaTime);
+    }
 }

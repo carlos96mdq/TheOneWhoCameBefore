@@ -31,14 +31,12 @@ public class MinotaurAudio : MonoBehaviour
 
     // Reproduce el sonido de pasos o lo detiene dependiendo el caso
     public void Play(MinotaurControl.State state) {
-        if(state == MinotaurControl.State.WALKING || state == MinotaurControl.State.RUNNING) {
+        if(state == MinotaurControl.State.WALKING || state == MinotaurControl.State.RUNNING || state == MinotaurControl.State.BACKING) {
             if(!footsteps.isPlaying) {
-                Debug.Log("Se reproduce");
                 footsteps.Play();
             }
         }
         else {
-            Debug.Log("Deja de reproducirse");
             footsteps.Pause();
         }
 
@@ -50,14 +48,11 @@ public class MinotaurAudio : MonoBehaviour
     // Cambia la velocidad del sonido de pasos acorde al estado del Minotaur
     public void ChangePitch(MinotaurControl.State state) {
         switch (state) {
-            case MinotaurControl.State.WALKING:
-            Debug.Log("Pitch cambiado");
+            case MinotaurControl.State.WALKING: case MinotaurControl.State.BACKING:
                 footsteps.pitch = walkingFrecuency;
                 break;
             case MinotaurControl.State.RUNNING:
                 footsteps.pitch = runningFrecuency;
-                break;
-            default:
                 break;
         }  
     }

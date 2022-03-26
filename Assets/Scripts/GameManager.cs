@@ -77,7 +77,6 @@ public class GameManager : MonoBehaviour
 
     // Sale del juego
     public void QuitGame() {
-        Debug.Log("Exit game");
         // Si nos encontramos en el modo editor, para la reproducción del juego
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;

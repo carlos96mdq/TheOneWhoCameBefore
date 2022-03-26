@@ -14,7 +14,8 @@ public class MinotaurControl : MonoBehaviour
         ROARING,
         ROTATING,
         WALKING,
-        RUNNING
+        RUNNING,
+        BACKING
     }
 
     //************************** Variables **************************//
@@ -62,7 +63,6 @@ public class MinotaurControl : MonoBehaviour
             case State.IDLE:
                 // Comienzo a moverme cuando me activo
                 StateRoaring();
-                Debug.Log("Cambie a estado rugiendo");
                 // StateWalking();
                 // StateRuning();
                 break;
@@ -91,7 +91,6 @@ public class MinotaurControl : MonoBehaviour
                 // Verifico si colisiono con algo a menos de 120 unidades y si ese objeto es el player
                 if(Physics.Raycast(transform.position, transform.forward, out hit, distancePlayerDetection, playerLayer) && hit.collider.tag == "PlayerTrigger") {
                     StateRoaring();
-                    Debug.Log("Cambie a estado rugiendo");
                 }
                 break;
             
@@ -101,6 +100,12 @@ public class MinotaurControl : MonoBehaviour
                 minotaurMovement.MoveForward(true);
                 break;
             
+            // Está retrocediendo
+            case State.BACKING:
+                // Me muevo hacia atras
+                minotaurMovement.MoveBackward();
+                break;
+
             // Está doblando
             case State.ROTATING:
                 // Aumento el progreso de rotación, la escala seria cuanta progresión por segundo
@@ -111,7 +116,6 @@ public class MinotaurControl : MonoBehaviour
                     rotationProgres = 1.0f;
                     minotaurRotation.Turn(rotationProgres, rotationDir);
                     StateWalking();
-                    Debug.Log("Cambie a estado caminando");
                     OnChildTriggerEnter();  // Esto es importante, lo utilizo para verificar que aunque doble no siga teniendo obstaculos
                 }
                 else {
@@ -157,6 +161,12 @@ public class MinotaurControl : MonoBehaviour
         minotaurEvents.InvokeOnStateChange(GetState());
     }
 
+    public void StateBacking() {
+        minotaurState = State.BACKING;
+        LevelOneManager.instance.ChangeChromatic(false);
+        minotaurEvents.InvokeOnStateChange(GetState());
+    }
+
     public bool IsIdle() {
         return (minotaurState == State.IDLE);
     }
@@ -175,6 +185,10 @@ public class MinotaurControl : MonoBehaviour
 
     public bool IsRunning() {
         return (minotaurState == State.RUNNING);
+    }
+
+    public bool IsBacking() {
+        return (minotaurState == State.BACKING);
     }
 
     //************************** Events **************************//
@@ -209,5 +223,12 @@ public class MinotaurControl : MonoBehaviour
         }     
     }
 
-    // VER EL TEMA DE CRUZARSE CON OTRO ENEMIGO
+    // El Controler Character el Minotauro colisiona contra un collider o un controller character
+    void OnControllerColliderHit(ControllerColliderHit hit) {
+        Debug.Log("Choca contra pared");
+        if(!IsBacking()) {
+            Debug.Log("Retrocede");
+            StateBacking();
+        }
+    }
 }
