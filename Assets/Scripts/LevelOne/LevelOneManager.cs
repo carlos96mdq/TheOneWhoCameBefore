@@ -217,7 +217,7 @@ public class LevelOneManager : MonoBehaviour
             chromatic.intensity.value = 1f;
         }
         else {
-            chromatic.intensity.value = 0.4f;
+            chromatic.intensity.value = 0.2f;
         }
     }
 }
