@@ -149,6 +149,11 @@ public class LevelOneManager : MonoBehaviour
             CloseSettings();
             OpenPause();
         }
+        // Si el ControlsScreen está activado
+        else if(controlsScreen.activeSelf) {
+            CloseControls();
+            OpenPause();
+        }
         // Si el PauseMenu está activado
         else if(pauseMenu.activeSelf) {
             ResumeGame();
@@ -194,10 +199,16 @@ public class LevelOneManager : MonoBehaviour
         settingsMenu.SetActive(false);
     }
     
+    // Abre el ControlsScreen
+    public void OpenControls() {
+        controlsScreen.SetActive(true);
+    }
+
     // Cierra el ControlsScreen
     public void CloseControls() {
         controlsScreen.SetActive(false);
     }
+
 
 
     // Configura el Chromatic Aberration

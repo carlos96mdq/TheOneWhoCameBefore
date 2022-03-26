@@ -266,6 +266,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torch_Fire_2
       objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1.37753e-40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 9.1835e-41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 9.78048e-39
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
 --- !u!4 &298973891864451383 stripped
@@ -327,6 +343,18 @@ PrefabInstance:
     - target: {fileID: 3559931530403691804, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
       propertyPath: m_Name
       value: Torch_Fire_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -3.7453976
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 6.6e-43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934176410654026772, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 6.77e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38726a1013995024a9d55e55535ca5c3, type: 3}
