@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9214465590049516957}
   m_Layer: 7
-  m_Name: Labyrinth
+  m_Name: LabyrinthOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
