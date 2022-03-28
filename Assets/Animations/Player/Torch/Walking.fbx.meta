@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 9171153e095de5542be9d404364cdfc9
+guid: f5d154645c7ce9b4ca48c1d814ee95db
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Running2
+    second: PlayerWalkingTorch
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Running2
+      name: PlayerWalkingTorch
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 52
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -54,7 +54,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

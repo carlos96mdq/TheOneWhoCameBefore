@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-/* LevelOneManager Class
-** Controlador central del primer nivel, trabjando en relación con el GameManager, Singleton
+/* LevelManager Class
+** Clase base para los diferentes Level Manager, trabajando en relación con el GameManager, Singleton
 */
-public class LevelOneManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     //************************** Types **************************//
     public enum State {
@@ -19,13 +19,13 @@ public class LevelOneManager : MonoBehaviour
     }
     
     //************************** Variables **************************//
-    //Private
-    State levelState;                   // Estado de la aprtida actual
-    ChromaticAberration chromatic;      // Post-Processing: Chomatic Aberration
+    //Protected
+    protected State levelState;                   // Estado de la aprtida actual
+    protected ChromaticAberration chromatic;      // Post-Processing: Chomatic Aberration
 
     //Public
     public float levelTimer;            // Timer general de la duración de la partida
-    public float fpsCounter;              // Contador de fps, calculado frame a frame
+    public float fpsCounter;            // Contador de fps, calculado frame a frame
     public GameObject pauseMenu;        // Menu de pausa
     public GameObject settingsMenu;     // Menu de setting
     public GameObject controlsScreen;   // Pantalla que muestra la lista de controles
@@ -34,11 +34,10 @@ public class LevelOneManager : MonoBehaviour
     public AudioSource bgMusic;         // Musica ambiente
     public PostProcessVolume postProces;// Volumen del Post Processing
 
-
-    public static LevelOneManager instance;
+    public static LevelManager instance;
         
     //************************** System Methods **************************//
-    void Awake() {
+    protected virtual void Awake() {
         // Singleton implementado
         if(instance != null && this != instance) {
             Destroy(gameObject);
@@ -52,52 +51,10 @@ public class LevelOneManager : MonoBehaviour
         InitialConfig();                    // Configuración inicial del nivel                      
     }
 
-    void Update() {
-        switch (levelState) {
-            // Nivel cargado pero esperando para empezar
-            case State.START:
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
-                    StartGame();
-                }
-            break;
-
-            // Juego corriendo
-            case State.PLAY:
-                levelTimer += Time.deltaTime;    // Aumento el timer general de la duración de la partida
-                if (Input.GetKeyDown("escape")) {
-                    PauseGame();
-                }
-            break;
-
-            // Juego pausado
-            case State.PAUSE:
-                if (Input.GetKeyDown("escape")) {
-                    PauseMenu();
-                }
-            break;
-
-            // Juego ganado
-            case State.WIN:
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
-                    GameManager.instance.LoadScene(1);  // Comienza a cargar el nuevo nivel
-
-                }
-            break;
-
-            // Juego perdido
-            case State.LOSE:
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
-                    GameManager.instance.LoadScene(0);  // Vuelvo al menu principal
-                }
-            break;
-
-        }
-    }
-
     //************************** Methods **************************//
     
     // Configuración inicial del juego
-    void InitialConfig() {
+    protected void InitialConfig() {
         Cursor.lockState = CursorLockMode.None; // Mostrar el mouse
         levelTimer = 0f;                        // Timer del nivel 
         Time.timeScale = 0f;                    // Empiezo con el tiempo parado
@@ -114,7 +71,7 @@ public class LevelOneManager : MonoBehaviour
     }
 
     // inicio el juego
-    void StartGame() {
+    protected void StartGame() {
         Cursor.lockState = CursorLockMode.Locked;   // Mostrar el mouse
         levelTimer = 0f;                            // Timer del nivel 
         Time.timeScale = 1f;                        // Empiezo con el tiempo parado
@@ -143,7 +100,7 @@ public class LevelOneManager : MonoBehaviour
     }
 
     // Maneja el resultado del input esc
-    void PauseMenu() {
+    protected void PauseMenu() {
         // Si el SettingsMenu está activado
         if(settingsMenu.activeSelf) {
             CloseSettings();

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 5ec96b53bedd75d43a5efc4e2731777c
+guid: 32f986460f29d2046aca1738202d0571
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Idle
+    second: PlayerIdleTorch
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -21,7 +21,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'neck_01' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -35,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: PlayerIdleTorch
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 190
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -51,7 +54,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0

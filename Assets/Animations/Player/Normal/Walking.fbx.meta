@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 184e8694c4908cf4aa20f730dcd51a3d
+guid: 3e748f3bc63113d4e951863ee0c00ca9
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: LeftWalk
+    second: PlayerWalking
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -21,7 +21,10 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'neck_01' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -35,7 +38,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: LeftWalk
+      name: PlayerWalking
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
