@@ -63,7 +63,12 @@ public class TimerMinotaur : MonoBehaviour
         // Verifico la condición
         if(timerTwo > timerTwoLimit) {
             // Aparece un nuevo Minotauro
-            Instantiate(minotaur, new Vector3(0f,6.30000019f,0f), new Quaternion(0,0,0,1));
+            if(GameManager.instance.GetLevelNumber() == 3) {
+                Instantiate(minotaur, new Vector3(-0.2f,6.3f,0f), new Quaternion(0,0,0,1));
+            }
+            else {
+                Instantiate(minotaur, new Vector3(0f,6.3f,0f), new Quaternion(0,0,0,1));            
+            }
             timerTwo = 0f;
         }
     }

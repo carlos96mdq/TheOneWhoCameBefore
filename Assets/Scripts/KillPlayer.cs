@@ -9,6 +9,8 @@ public class KillPlayer : MonoBehaviour
 {   
     //************************** Events **************************//
     void OnTriggerEnter(Collider other) {
-        LevelOneManager.instance.LoseGame();
+        if(other.tag == "Player") {
+            LevelOneManager.instance.LoseGame();
+        }
     }
 }
