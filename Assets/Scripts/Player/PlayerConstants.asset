@@ -19,6 +19,6 @@ MonoBehaviour:
   walkingFrecuency: 0.7
   runningFrecuency: 1.1
   consumeStaminaFactor: 10
-  recoverStaminaFactor: 5
+  recoverStaminaFactor: 10
   maxStamina: 100
-  recoverTime: 10
+  recoverTime: 30
