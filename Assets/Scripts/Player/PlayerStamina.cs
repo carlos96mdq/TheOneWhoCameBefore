@@ -21,7 +21,7 @@ public class PlayerStamina : MonoBehaviour
 
     //************************** System Methods **************************//
     void Start() {
-        consumeStaminaFactor =  constants.consumeStaminaFactor;
+        consumeStaminaFactor = constants.consumeStaminaFactor;
         recoverStaminaFactor = constants.recoverStaminaFactor;
         maxStamina = constants.maxStamina;           
         recoverTime = constants.recoverTime;          
