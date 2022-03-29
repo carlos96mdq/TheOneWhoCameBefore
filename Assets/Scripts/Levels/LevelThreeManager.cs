@@ -9,7 +9,9 @@ public class LevelThreeManager : LevelManager
 {         
     //************************** System Methods **************************//
     protected override void Awake() {
-        base.Awake();           // Configuración inicial del nivel                      
+        base.Awake();           // Configuración inicial del nivel        
+
+        initialObjetive = 2;    // Seteo el objetivo inicial del nivel                                    
     }
 
     void Update() {

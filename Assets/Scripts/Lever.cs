@@ -35,7 +35,7 @@ public class Lever : MonoBehaviour
                 isLeverActive = true;
                 staircase.SetActive(true);
                 leverSound.Play();
-                objetives.NextObjetive();
+                objetives.UpdateObjetive(1);
             }
             /*
             // Desactivo la palanca

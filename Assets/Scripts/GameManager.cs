@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     FullScreenMode fullscreenMode;
     float mouseSensibility;         // Valor de sensibilidad del mouse a la hora de controlar la camara
 
-    // Public
+    // Public   
     public static GameManager instance;
     
     //************************** System Methods **************************//

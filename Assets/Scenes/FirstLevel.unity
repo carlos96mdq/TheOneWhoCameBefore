@@ -658,7 +658,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -435}
-  m_SizeDelta: {x: 800, y: 153.78601}
+  m_SizeDelta: {x: 1000, y: 153.78601}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &924404135
 MonoBehaviour:
@@ -680,7 +680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Complete
+  m_text: Level One Complete
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e3d2293c6f93b14c8a34e689f03431e, type: 2}
   m_sharedMaterial: {fileID: -8341233261509081083, guid: 4e3d2293c6f93b14c8a34e689f03431e, type: 2}
@@ -1157,6 +1157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTimer: 0
   fpsCounter: 0
+  initialObjetive: 0
   pauseMenu: {fileID: 1687475915}
   settingsMenu: {fileID: 2013288982}
   controlsScreen: {fileID: 865177259}

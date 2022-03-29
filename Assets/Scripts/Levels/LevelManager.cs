@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     //Public
     public float levelTimer;            // Timer general de la duración de la partida
     public float fpsCounter;            // Contador de fps, calculado frame a frame
+    public int initialObjetive;         // Index de la tabla de objetivos del objetivo inicial
     public GameObject pauseMenu;        // Menu de pausa
     public GameObject settingsMenu;     // Menu de setting
     public GameObject controlsScreen;   // Pantalla que muestra la lista de controles
