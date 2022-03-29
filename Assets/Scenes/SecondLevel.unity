@@ -1524,6 +1524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTimer: 0
   fpsCounter: 0
+  initialObjetive: 0
   pauseMenu: {fileID: 1239172824}
   settingsMenu: {fileID: 738524002}
   controlsScreen: {fileID: 1143476127}
