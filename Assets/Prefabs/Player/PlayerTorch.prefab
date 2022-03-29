@@ -294,7 +294,6 @@ GameObject:
   - component: {fileID: 61833479450489316}
   - component: {fileID: 1844210586920705900}
   - component: {fileID: 2626519088637482948}
-  - component: {fileID: 717446413672159721}
   m_Layer: 8
   m_Name: PlayerTorch
   m_TagString: Player
@@ -417,22 +416,6 @@ MonoBehaviour:
   playerAnimation: {fileID: 3138442526072469752}
   playerAudio: {fileID: 3138442526072469748}
 --- !u!114 &2626519088637482948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138442526072469756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af8fd4527add1454196fc4a5cdb36cc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerEvents: {fileID: 1844210586920705900}
-  playerMovement: {fileID: 3138442526072469758}
-  playerRotation: {fileID: 1844210585078195698}
-  playerStamina: {fileID: 61833479450489316}
---- !u!114 &717446413672159721
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

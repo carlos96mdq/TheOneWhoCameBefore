@@ -18,8 +18,6 @@ public class PlayerRotation : MonoBehaviour
 
     // Public
     public Transform player;            // Transform del player al que la camara sigue
-                                        // Se debe destacar que se utilizarán las librerías del sistema de C# 
-                                        // (System) y no las integradas dentro de Unity (UnityEngine)
     public CharacterConstants constants;// Constantes                      
                     
     
@@ -29,13 +27,18 @@ public class PlayerRotation : MonoBehaviour
         x_rotation = 0f;
         rotationSpeed = constants.rotationSpeed;
         mouseSensibility = GameManager.instance.GetMouseSensibility();
-        randomNumber = new System.Random((int)DateTime.Now.Ticks);          // Inicializo una nueva instancia de Random
-                                                                            // con un seed dependiente de la fecha y hora actual
-        player.transform.localRotation = Quaternion.Euler(0f, randomNumber.Next(360), 0f); // Devuelve un angulo random        
     }
 
     //************************** Methods **************************//
 
+    // Establece una rotación random del Player, idela para comenzar la partida
+    public void RandomRotation() {
+        if(!(GameManager.instance.GetLevelNumber() == 3)) {
+            randomNumber = new System.Random((int)DateTime.Now.Ticks);          // Inicializo una nueva instancia de Random con un seed dependiente de la fecha y hora actual
+            player.transform.localRotation = Quaternion.Euler(0f, randomNumber.Next(360), 0f); // Devuelve un angulo random        
+        }
+    }
+    
     // A partir de los inputs ingresados por el jugador, rota al Player
     public void Rotation() {
         // Tomo el valor demovimiento tanto en el eje x como en el eje y del mouse

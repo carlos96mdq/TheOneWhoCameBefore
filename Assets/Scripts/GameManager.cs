@@ -90,4 +90,9 @@ public class GameManager : MonoBehaviour
     public float GetMouseSensibility() {
         return mouseSensibility;
     }
+
+    // Devuelve el número del nivel
+    public int GetLevelNumber() {
+        return SceneManager.GetActiveScene().buildIndex;
+    }
 }

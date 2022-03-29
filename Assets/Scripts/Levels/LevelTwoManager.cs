@@ -39,7 +39,7 @@ public class LevelTwoManager : LevelManager
             // Juego ganado
             case State.WIN:
                 if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) {
-                    GameManager.instance.LoadScene(0);  // Comienza a cargar el nuevo nivel
+                    GameManager.instance.LoadScene(3);  // Comienza a cargar el nuevo nivel
                 }
             break;
 

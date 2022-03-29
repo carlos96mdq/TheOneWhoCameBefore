@@ -29,7 +29,8 @@ public class PlayerControl : MonoBehaviour
 
     //************************** System Methods **************************//
     void Start() {
-        StateIdle();
+        StateIdle();                        // Estado inicial
+        playerRotation.RandomRotation();    // Rotación inicial
     }
 
     void Update() {

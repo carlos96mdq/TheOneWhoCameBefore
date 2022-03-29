@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerConstants
   m_EditorClassIdentifier: 
   gravity: -9.81
-  movementSpeed: 3
+  movementSpeed: 6
   runningFactor: 2
   rotationSpeed: 100
   walkingFrecuency: 0.7
