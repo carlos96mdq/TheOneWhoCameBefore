@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
     void InitialConfig() {
         QualitySettings.vSyncCount = 1;
         Application.targetFrameRate = 60;
-        width = 1200;               
-        height = 720;
+        width = 1920;               
+        height = 1080;
         fullscreenMode = FullScreenMode.ExclusiveFullScreen;
         mouseSensibility = 2f;
         ChangeScreen();
