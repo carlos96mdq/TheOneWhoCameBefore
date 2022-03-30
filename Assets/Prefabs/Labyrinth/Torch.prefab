@@ -308,18 +308,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 413332, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 413332, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 413332, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 413332, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.494
       objectReference: {fileID: 0}
@@ -357,26 +345,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413332, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879778, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: InitialModule.startSizeY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879778, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: InitialModule.startSizeZ.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879778, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: InitialModule.startRotationX.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 19879778, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: InitialModule.startRotationY.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7150877129123835670, guid: 5c9c363869d1bfd4b836c3478bf468aa, type: 3}
-      propertyPath: m_Shadows.m_Type
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
