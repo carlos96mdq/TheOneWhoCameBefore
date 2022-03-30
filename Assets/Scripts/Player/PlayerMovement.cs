@@ -60,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Maneja la gravedad a falta de RigidBody
-    // No está implementada correctamente, pero como no hay salto por ahora queda así
     public void Gravity() {       
         controller.Move(fallVelocity * Time.deltaTime);
     }
