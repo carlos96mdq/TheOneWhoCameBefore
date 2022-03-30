@@ -1170,6 +1170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   constantsOne: {fileID: 11400000, guid: 0d30bb08b26cbd748a9ad93dc45a4fb2, type: 2}
   constantsTwo: {fileID: 11400000, guid: 7d2f749d339ac6a48bb0919ec8015f6f, type: 2}
+  minotaurCopy: {fileID: 56391636642908465, guid: 3de314cfa2a234041b2e63a42ab78f99, type: 3}
 --- !u!114 &1173737004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,6 +2134,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054399730891195374, guid: b3a950365714f514e8bfc88456ff3c1f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054399731036445673, guid: b3a950365714f514e8bfc88456ff3c1f, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

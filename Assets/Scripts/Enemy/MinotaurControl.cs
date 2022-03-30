@@ -269,5 +269,12 @@ public class MinotaurControl : MonoBehaviour
             Debug.Log("Retrocede");
             StateBacking();
         }
+        else if(IsBacking()) {
+            Debug.Log("Avanza");
+            StateWalking();
+        }
+        if(hit.collider.tag == "Enemy") {
+            Destroy(hit.collider.gameObject);
+        }
     }
 }

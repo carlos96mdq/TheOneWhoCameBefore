@@ -14,6 +14,7 @@ public class TimerMinotaur : MonoBehaviour
 
     public TimerConstants constantsOne; // Constantes del timerOne
     public TimerConstants constantsTwo; // Constantes del timerOne
+    public GameObject minotaurCopy;
     
     void Start()
     {
@@ -64,10 +65,10 @@ public class TimerMinotaur : MonoBehaviour
         if(timerTwo > timerTwoLimit) {
             // Aparece un nuevo Minotauro
             if(GameManager.instance.GetLevelNumber() == 3) {
-                Instantiate(minotaur, new Vector3(-0.2f,6.3f,0f), new Quaternion(0,0,0,1));
+                Instantiate(minotaurCopy, new Vector3(-0.2f,6.3f,0f), new Quaternion(0,0,0,1));
             }
             else {
-                Instantiate(minotaur, new Vector3(0f,6.3f,0f), new Quaternion(0,0,0,1));            
+                Instantiate(minotaurCopy, new Vector3(0f,6.3f,0f), new Quaternion(0,0,0,1));            
             }
             timerTwo = 0f;
         }
