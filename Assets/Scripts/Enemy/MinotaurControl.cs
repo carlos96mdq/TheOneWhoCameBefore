@@ -199,7 +199,6 @@ public class MinotaurControl : MonoBehaviour
     
     // Entro en contacto con un Rotation Trigger
     public void OnChildTriggerEnter() {
-        Debug.Log("Trigger del minotauro activado");
         // Depende el nivel, dependa el desenlace
         if(GameManager.instance.GetLevelNumber() == 3) {
             // La dirección va a estar determinada por la dirección hacia donde mira + un vector negativo en y para mirar para abajo en diagonal
