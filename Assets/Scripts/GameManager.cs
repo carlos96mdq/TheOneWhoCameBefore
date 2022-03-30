@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         width = 1200;               
         height = 720;
         fullscreenMode = FullScreenMode.ExclusiveFullScreen;
-        mouseSensibility = 1f;
+        mouseSensibility = 2f;
         ChangeScreen();
     }
 

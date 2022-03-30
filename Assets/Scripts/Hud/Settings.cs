@@ -14,7 +14,6 @@ public class Settings : MonoBehaviour
     public Slider volumeSlider;             // Slider del volumen
     public Slider sensibilitySlider;        // Slider de la sensibilidad de la cámara
     public ToggleGroup resolutionToggles;   // Toggles que manejan la resolución
-    public GameManager gameManager;         // Referencia al GameManager
     public PlayerRotation playerRotation;   // Script de rotación de la camara del Player
 
     //************************** Events **************************//

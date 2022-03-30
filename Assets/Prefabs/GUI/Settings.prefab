@@ -441,10 +441,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 333938449}
   m_HandleRect: {fileID: 1335711804}
   m_Direction: 0
-  m_MinValue: 0.1
-  m_MaxValue: 2
+  m_MinValue: 0.5
+  m_MaxValue: 3
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3337,7 +3337,6 @@ MonoBehaviour:
   volumeSlider: {fileID: 8899730729260259913}
   sensibilitySlider: {fileID: 471702069}
   resolutionToggles: {fileID: 8899730729565697962}
-  gameManager: {fileID: 0}
   playerRotation: {fileID: 0}
 --- !u!1 &8899730730701700478
 GameObject:
