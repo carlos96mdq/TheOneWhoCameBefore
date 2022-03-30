@@ -1382,10 +1382,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 1783860177}
     m_Modifications:
     - target: {fileID: 8899730730638617456, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899730730638617456, guid: cbb10fd619e4c604e9484722548d4cff, type: 3}
       propertyPath: playerRotation
       value: 
       objectReference: {fileID: 3610214651033019250}
