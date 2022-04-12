@@ -10,6 +10,14 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     //************************** Variables **************************//
+    //Private
+    int [][]resolutions = {
+        new int [] {800, 600},
+        new int [] {1200, 720},
+        new int [] {1366, 768},
+        new int [] {1920, 1080},
+    };
+    
     // Public
     public Slider volumeSlider;             // Slider del volumen
     public Slider sensibilitySlider;        // Slider de la sensibilidad de la cámara
@@ -20,29 +28,32 @@ public class Settings : MonoBehaviour
 
     // Handler de los Toggles de Resolución de pantalla
     public void OnScreenResolutionChangedHandled(int mode) {
-        int width = 1200;
-        int height = 720;
+        int width = resolutions[mode][0];
+        int height = resolutions[mode][1];
+        
+        // int width = 1200;
+        // int height = 720;
 
-        // Choose resolution
-        switch (mode)
-        {   
-            case 0:
-                width = 800;
-                height = 600;
-                break;
-            case 1:
-                width = 1200;
-                height = 720;
-                break;
-            case 2:
-                width = 1366;
-                height = 768;
-                break;
-            case 3:
-                width = 1920;
-                height = 1080;
-                break;
-        }
+        // // Choose resolution
+        // switch (mode)
+        // {   
+        //     case 0:
+        //         width = 800;
+        //         height = 600;
+        //         break;
+        //     case 1:
+        //         width = 1200;
+        //         height = 720;
+        //         break;
+        //     case 2:
+        //         width = 1366;
+        //         height = 768;
+        //         break;
+        //     case 3:
+        //         width = 1920;
+        //         height = 1080;
+        //         break;
+        // }
 
         GameManager.instance.ChangeScreenResolution(width, height);
     }
