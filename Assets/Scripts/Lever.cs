@@ -37,14 +37,14 @@ public class Lever : MonoBehaviour
                 leverSound.Play();
                 objetives.UpdateObjetive(1);
             }
-            /*
-            // Desactivo la palanca
-            else if(Input.GetKeyDown(KeyCode.E) && isLeverActive) {
-                PullUp();
-                isLeverActive = false;
-                staircase.SetActive(false);
-            }
-            */
+            
+            // // Desactivo la palanca
+            // else if(Input.GetKeyDown(KeyCode.E) && isLeverActive) {
+            //     PullUp();
+            //     isLeverActive = false;
+            //     staircase.SetActive(false);
+            // }
+            
         }
     }
 
